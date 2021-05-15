@@ -25,5 +25,6 @@ public class HackerspaceRoomStatusEntity {
 	private Integer id;
 	private LocalDateTime creationDate = LocalDateTime.now();
 	private RoomStatus roomStatus;
+	
 
 }

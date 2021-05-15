@@ -1,5 +1,7 @@
 package Info_Display.V20.persistence.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +17,8 @@ public class HackerspaceRoomStatusService {
 	@Autowired
 	HackerspaceRoomStatusRepository repo;
 	
-	public ResponseEntity<RoomStatus> getCurrentRoomStatus(){
-		if(repo.getRoomStatus().equals(RoomStatus.OPEN)) {
-			return new ResponseEntity<RoomStatus>(repo.getRoomStatus(), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<RoomStatus>(repo.getRoomStatus(), HttpStatus.CONFLICT);
-		}
-		
+	public HackerspaceRoomStatusEntity getCurrentRoomStatus(){
+		return repo.findFirstByOrderByCreationDateDesc().get(0);
 	}
 	
 	public ResponseEntity<String> setStatus(RoomStatus roomStatus){
@@ -33,5 +30,9 @@ public class HackerspaceRoomStatusService {
 		}else {
 			return new ResponseEntity<>("Room status can\'t changed", HttpStatus.CONFLICT);
 		}
+	}
+	
+	public List<HackerspaceRoomStatusEntity> getAllEntrys(){
+		return repo.findAll();
 	}
 }

@@ -1,5 +1,7 @@
 package Info_Display.V20.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,14 @@ public class HackerspaceRoomStatusController {
 	@Autowired
 	HackerspaceRoomStatusService roomStatuService;
 	
-	@GetMapping(value = "/RoomStatus", produces = "applcation/json")
-	public ResponseEntity<RoomStatus> getRoomStatus(){
+	@GetMapping(value = "/RoomStatus")
+	public HackerspaceRoomStatusEntity getRoomStatus(){
 		return roomStatuService.getCurrentRoomStatus();
+	}
+	
+	@GetMapping(value = "/RoomStatus/All")
+	public List<HackerspaceRoomStatusEntity> getAll(){
+		return roomStatuService.getAllEntrys();
 	}
 	
 	@PostMapping(value = "/RoomStatus{status}")
