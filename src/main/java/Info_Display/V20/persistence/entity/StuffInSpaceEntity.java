@@ -3,6 +3,7 @@ package Info_Display.V20.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.UUID;
 
@@ -11,7 +12,8 @@ import java.util.UUID;
 @Table(name="Stuff")
 public class StuffInSpaceEntity {
 
-    private UUID uuid;
+    @Id
+    private UUID uuid = UUID.randomUUID();
     private String name;
     private String position;
     private String info;

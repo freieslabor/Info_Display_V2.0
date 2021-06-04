@@ -2,6 +2,7 @@ package Info_Display.V20.persistence.service;
 
 import java.util.List;
 
+import Info_Display.V20.lib.Exception.RoomStatusExceptions.ChangeRoomStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,14 @@ public class HackerspaceRoomStatusService {
 		return repo.findFirstByOrderByCreationDateDesc().get(0);
 	}
 	
-	public ResponseEntity<String> setStatus(RoomStatus roomStatus){
+	public ResponseEntity<String> setStatus(RoomStatus roomStatus) throws ChangeRoomStatusException {
 		HackerspaceRoomStatusEntity entity = new HackerspaceRoomStatusEntity();
 		entity.setRoomStatus(roomStatus);
 		repo.save(entity);
 		if(repo.existsById(entity.getId())) {
 			return new ResponseEntity<>("Room Status is " + roomStatus, HttpStatus.CREATED);
 		}else {
-			return new ResponseEntity<>("Room status can\'t changed", HttpStatus.CONFLICT);
+			throw new ChangeRoomStatusException("Room Status can\'t changed");
 		}
 	}
 	
