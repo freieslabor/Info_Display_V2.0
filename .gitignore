@@ -32,5 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 
-### H2 Database ###
-*.properties
+### Application Proerties ###
+*/src/main/resources/application.properties
