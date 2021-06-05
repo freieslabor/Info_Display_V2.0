@@ -12,11 +12,11 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(StuffInSpaceException.class)
     public ResponseEntity<String> handler(StuffInSpaceException e){
-        return new ResponseEntity<String>(e.toString(),HttpStatus.CONFLICT);
+        return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(RoomStatusException.class)
     public ResponseEntity<String> handler(RoomStatusException e){
-        return new ResponseEntity<String>(e.toString(), HttpStatus.CONFLICT);
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
     }
 }
