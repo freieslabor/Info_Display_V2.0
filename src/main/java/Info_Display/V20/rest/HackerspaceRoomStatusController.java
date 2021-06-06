@@ -2,7 +2,9 @@ package Info_Display.V20.rest;
 
 import java.util.List;
 
+import Info_Display.V20.lib.Exception.NoAccessForipAddressException;
 import Info_Display.V20.lib.Exception.RoomStatusExceptions.ChangeRoomStatusException;
+import Info_Display.V20.persistence.service.AccessControllService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +16,16 @@ import Info_Display.V20.lib.RoomStatus;
 import Info_Display.V20.persistence.entity.HackerspaceRoomStatusEntity;
 import Info_Display.V20.persistence.service.HackerspaceRoomStatusService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class HackerspaceRoomStatusController {
 	
 	@Autowired
 	HackerspaceRoomStatusService roomStatuService;
+
+	@Autowired
+	AccessControllService accessService;
 	
 	@GetMapping(value = "/RoomStatus")
 	public HackerspaceRoomStatusEntity getRoomStatus(){
@@ -31,7 +38,8 @@ public class HackerspaceRoomStatusController {
 	}
 	
 	@PostMapping(value = "/RoomStatus{status}")
-	public ResponseEntity<String> setRoomStatus(@RequestParam("status")RoomStatus roomStatus) throws ChangeRoomStatusException {
+	public ResponseEntity<String> setRoomStatus(@RequestParam("status")RoomStatus roomStatus, HttpServletRequest request) throws ChangeRoomStatusException, NoAccessForipAddressException {
+		accessService.checkIpAddress(request);
 		return roomStatuService.setStatus(roomStatus);
 	}
 

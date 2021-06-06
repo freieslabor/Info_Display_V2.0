@@ -19,4 +19,9 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<String> handler(RoomStatusException e){
         return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(NoAccessForipAddressException.class)
+    public ResponseEntity<String> handler(NoAccessForipAddressException e){
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+    }
 }
