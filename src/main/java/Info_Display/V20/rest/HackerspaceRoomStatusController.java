@@ -39,7 +39,7 @@ public class HackerspaceRoomStatusController {
 	
 	@PostMapping(value = "/RoomStatus{status}")
 	public ResponseEntity<String> setRoomStatus(@RequestParam("status")RoomStatus roomStatus, HttpServletRequest request) throws ChangeRoomStatusException, NoAccessForipAddressException {
-		accessService.checkIpAddress(request);
+		//accessService.checkIpAddress(request);
 		return roomStatuService.setStatus(roomStatus);
 	}
 
