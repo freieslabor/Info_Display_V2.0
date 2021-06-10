@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import Info_Display.V20.lib.RoomStatus;
+import Info_Display.V20.lib.Enum.RoomStatus;
 import lombok.Getter;
 import lombok.Setter;
 

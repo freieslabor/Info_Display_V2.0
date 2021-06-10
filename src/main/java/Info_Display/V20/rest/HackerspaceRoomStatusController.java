@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import Info_Display.V20.lib.RoomStatus;
+import Info_Display.V20.lib.Enum.RoomStatus;
 import Info_Display.V20.persistence.entity.HackerspaceRoomStatusEntity;
 import Info_Display.V20.persistence.service.HackerspaceRoomStatusService;
 

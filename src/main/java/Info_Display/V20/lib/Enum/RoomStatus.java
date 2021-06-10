@@ -1,4 +1,4 @@
-package Info_Display.V20.lib;
+package Info_Display.V20.lib.Enum;
 
 public enum RoomStatus {
 	

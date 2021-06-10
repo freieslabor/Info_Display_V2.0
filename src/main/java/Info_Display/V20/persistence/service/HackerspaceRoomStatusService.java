@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import Info_Display.V20.lib.RoomStatus;
+import Info_Display.V20.lib.Enum.RoomStatus;
 import Info_Display.V20.persistence.entity.HackerspaceRoomStatusEntity;
 import Info_Display.V20.persistence.repositroy.HackerspaceRoomStatusRepository;
 
