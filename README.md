@@ -18,6 +18,6 @@ The Database for this application is a H2Database of your device, that you decid
 
 ## Installtion
 
-* Step One Please clone the application from [GitHub] (https://github.com/freieslabor/Info_Display_V2.0)
-* Step Two Create a file names `application.properties` in the folder `resources`. Is no folder `resoucres` please create this [here] (https://github.com/freieslabor/Info_Display_V2.0/tree/master/src/main).
+* Step One Please clone the application from [GitHub](https://github.com/freieslabor/Info_Display_V2.0)
+* Step Two Create a file names `application.properties` in the folder `resources`. Is no folder `resoucres` please create this [here](https://github.com/freieslabor/Info_Display_V2.0/tree/master/src/main).
 
