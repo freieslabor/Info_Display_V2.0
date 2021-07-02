@@ -19,18 +19,8 @@ The Database for this application is a H2Database of your device, that you decid
 ## Installtion
 
 * Step One Please clone the application from [GitHub](https://github.com/freieslabor/Info_Display_V2.0)
-* Step Two Create a file names `application.properties` in the folder `resources`. Exists no folder `resoucres` please create this in `src/main/`
-* Step Three Write into `application.properties`this text:
-```
-spring.datasource.url=jdbc:h2:file:<<Place for the Database (Example: ~/Desktop/ >>InfoDisplayDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-spring.datasource.driver-class-name=org.h2.Driver
-spring.datasource.data-username=InfoDisplay
-spring.datasource.data-password=password
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-spring.jpa.hibernate.ddl-auto=update
+* Step Two Before you start the application. Please execute the jar file ``install.jar`` with the parameters username, password and serverport. Without any parameters the system use the default `username: InfoDisplay, password: InfoDisplay, serverport: 8080`  
+Note!!! you can use only default settings or only personal settings no mixed
+  
+* 
 
-server.port=8400
-``` 
-* Step Four Now you must use maven for compile the project, that generate the `.jar`.
-* Step Five You can find the `.jar` file in the folder `target/`.
-* Step Six 
