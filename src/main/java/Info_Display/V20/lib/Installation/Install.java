@@ -2,12 +2,7 @@ package Info_Display.V20.lib.Installation;
 
 import Info_Display.V20.lib.Exception.Install.CreateApplicationPropertiesFileException;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
+import java.io.*;
 import java.util.logging.Logger;
 
 public class Install {
@@ -19,7 +14,8 @@ public class Install {
     private static String password;
     private static String port;
 
-    private static String pathInProject = "/src/main/resources/application2.properties";
+    private static String pathInProject = "/src/main/resources/application.properties";
+    private static  String userDir = System.getProperty("user.dir");
 
     public static void main(String[] args) throws IOException, CreateApplicationPropertiesFileException {
 
@@ -38,7 +34,7 @@ public class Install {
 
         log.info("Username = " + username + ", password = " + password + ", Serverport = " + port);
 
-        String userDir = System.getProperty("user.dir");
+
         appProperties = new File(userDir + pathInProject);
         if(appProperties.createNewFile()){
 
@@ -55,7 +51,7 @@ public class Install {
             myWriter.write(contentOfApplicationProperties);
             myWriter.close();
 
-            if(checkWriteFile(contentOfApplicationProperties)){
+            if(checkWriteFile()){
                 log.info("Application.properties created successfully!");
             }else{
                 log.info("Something failed by writing application.properties! \n Please do this manually");
@@ -66,14 +62,11 @@ public class Install {
         }
     }
 
-    private static boolean checkWriteFile(String controlString) throws IOException, CreateApplicationPropertiesFileException {
-        String path = System.getProperty("user.dir") + pathInProject;
+    private static boolean checkWriteFile() throws IOException, CreateApplicationPropertiesFileException {
 
-        List<String> lines = Files.readAllLines(Path.of(path));
+        BufferedReader buffer = new BufferedReader(new FileReader(userDir + pathInProject));
 
-        log.info(String.valueOf(lines));
-
-        if(lines.get(0).equals(controlString)){
+        if(buffer.readLine() != null){
             return true;
         }else{
             throw new CreateApplicationPropertiesFileException("No the same content in application.properties!");
