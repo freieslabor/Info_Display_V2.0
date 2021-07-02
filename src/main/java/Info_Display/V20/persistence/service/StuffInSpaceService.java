@@ -34,15 +34,6 @@ public class StuffInSpaceService {
 
     }
 
-    public ResponseEntity<StuffInSpaceEntity> getEntryByID(UUID id) throws FindEntryException {
-        if (repo.existsById(id)){
-            log.info("Get request for Entry by id");
-            return new ResponseEntity<StuffInSpaceEntity>(repo.findById(id).get(), HttpStatus.OK);
-        }else{
-            throw new FindEntryException("ID: " + id + " can\'t find in Database");
-        }
-    }
-
     public ResponseEntity<List<StuffInSpaceEntity>> getEntryByContaining(String name){ log.info("Get request for Contatining search!");return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findByNameContaining(name), HttpStatus.OK); }
 
     public ResponseEntity<List<StuffInSpaceEntity>> getAllEntrys(){ log.info("Get request for all StuffInSpace Entrys"); return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findAll(), HttpStatus.OK); }
