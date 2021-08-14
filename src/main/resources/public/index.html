@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <title>Info Display</title>
+    <!-- Start list of links for Bootstrap4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <!-- End list -->
+    <!--Settings for Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Load optional function-->
+    <script src="js/InfoDisplay.js"></script>
+    <script src="css/style.css"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navbar">
+        &nbsp;<span class="navbar-brand">Info Display</span>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary" data-target="#newToDo" data-toggle="modal">Room Status</button>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Stuff in Space</button>
+                    <div class="dropdown-menu">
+                        <button  class="dropdown-item" data-target="#login" data-toggle="modal">Search</button>
+                        <button  class="dropdown-item" data-target="#register" data-toggle="modal">Add New Item</button>
+                    </div>
+                </div>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">About</button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" data-target="#help" data-toggle="modal">Help</button>
+                    <button class="dropdown-item" data-target="#about" data-toggle="modal">About</button>
+                    <button class="dropdown-item" data-target="#settings" data-toggle="modal">Settings</button>
+                </div>
+            </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Please write a Command" >
+        </div>
+    </div>
+</body>
+<iframe name="RestInterface" style="display: none;"></iframe>
+</html>
