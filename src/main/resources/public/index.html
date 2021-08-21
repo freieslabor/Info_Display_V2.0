@@ -11,12 +11,10 @@
     <!--Settings for Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Load optional function-->
-    <script src="js/InfoDisplay.js"></script>
     <script src="css/style.css"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navbar">
-        &nbsp;<span class="navbar-brand">Info Display</span>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <button type="button" class="btn btn-primary" data-target="#newToDo" data-toggle="modal">Room Status</button>
@@ -42,11 +40,13 @@
             </li>
         </ul>
     </nav>
-    <div class="container">
-        <div class="input-group mb-3">
+    <div class="container"><br /><br /><br /><br />
+        <div class="input-group mb-3" id="Command">
             <input type="text" class="form-control" placeholder="Please write a Command" >
+            <button type="button" class="btn btn-success" onclick="executeCommand()">Execute</button>
         </div>
     </div>
 </body>
 <iframe name="RestInterface" style="display: none;"></iframe>
+<script src="js/InfoDisplay.js"></script>
 </html>
