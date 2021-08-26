@@ -30,7 +30,7 @@ public class StuffInSpaceController {
         return service.createNewEntry(name, info, position);
     }
 
-    @PostMapping(value = "/StuffInSpace/Find{name}")
+    @GetMapping(value = "/StuffInSpace/Find{name}")
     public ResponseEntity<List<StuffInSpaceEntity>> getEntriesByContaining(@RequestParam("name") String name){
         return service.getEntryByContaining(name);
     }
