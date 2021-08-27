@@ -41,12 +41,26 @@
         </ul>
     </nav>
     <div class="container"><br /><br /><br /><br />
-        <div class="input-group mb-3" id="Command">
-            <input type="text" class="form-control" placeholder="Please write a Command" >
-            <button type="button" class="btn btn-success" onclick="executeCommand()" id="CommandTextField">Execute</button>
+        <button class="btn btn-primary" data-target="#Room" data-toggle="modal">Room Status</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#Stuff">Stuff in Space</button>
+        <button class="btn btn-primary" data-target="#Calender" data-toggle="modal">Calender</button>
+    </div>
+    <div class="modal fade" id="Room">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Room Status</h4>
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Current Room Status: <div id="content"></div></p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
+            </div>
         </div>
     </div>
 </body>
 <iframe name="RestInterface" style="display: none;"></iframe>
 <script src="js/InfoDisplay.js"></script>
+<script>getCurrentRoomStatus();</script>
 </html>
