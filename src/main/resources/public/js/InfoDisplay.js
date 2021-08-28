@@ -4,7 +4,7 @@ function getCurrentRoomStatus(){
         if(this.readyState == 4 && this.status == 200){
             console.log(this.responseText);
             var obj = JSON.parse(this.responseText);
-            output = obj
+            output = obj.roomStatus;
             document.getElementById("content").innerHTML = output;
         }
     }

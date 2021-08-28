@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Load optional function-->
     <script src="css/style.css"></script>
+    <script src="js/InfoDisplay.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navbar">
@@ -53,7 +54,7 @@
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Current Room Status: <div id="content"></div></p>
+                    <p>Current Room Status: <span id="content"></span></p>
                 </div>
                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
             </div>
@@ -61,6 +62,5 @@
     </div>
 </body>
 <iframe name="RestInterface" style="display: none;"></iframe>
-<script src="js/InfoDisplay.js"></script>
 <script>getCurrentRoomStatus();</script>
 </html>
