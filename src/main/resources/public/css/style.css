@@ -1,6 +1,10 @@
 div.container{
     margin-top: 10%;
+    border: 1px solid black;
 }
 #Command{
 margin-top:10%;
+}
+div.fastButtons{
+    margin-top: 1%;
 }
