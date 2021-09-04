@@ -55,6 +55,8 @@
                 </div>
                 <div class="modal-body">
                     <p>Current Room Status: <span id="content"></span></p>
+                    <button type="button" class="btn btn-success" onclick="openRoom();">Room OPEN</button>
+                    <button type="button" class="btn btn-danger" onclick="closeRoom()">Room Close</button>
                 </div>
                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
             </div>
@@ -62,5 +64,8 @@
     </div>
 </body>
 <iframe name="RestInterface" style="display: none;"></iframe>
-<script>getCurrentRoomStatus();</script>
+<script>
+    //Load all get Functions
+    getCurrentRoomStatus();
+</script>
 </html>
