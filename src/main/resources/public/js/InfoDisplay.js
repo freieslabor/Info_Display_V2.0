@@ -44,3 +44,15 @@ function closeRoom(){
         content.send('status=CLOSE');
     }
 }
+
+function getCalanderEntryForCurrentDay(){
+    content.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var obj = JSON.parse(this.responseText);
+            calander = obj.date + " <br />" + obj.comment;
+            document.getElementById("responseCalanderInfo").innerHTML = calander;
+        }
+    }
+    content.open("GET", "/calender", true);
+    content.send();
+}

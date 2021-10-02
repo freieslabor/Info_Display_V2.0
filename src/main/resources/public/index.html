@@ -47,6 +47,14 @@
             <button class="btn btn-primary" data-toggle="modal" data-target="#Stuff">Stuff in Space</button>
             <button class="btn btn-primary" data-target="#Calender" data-toggle="modal">Calender</button>
         </div>
+        <div class="serverInformation">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">Todays Calander Information:</h5>
+                    <p class="card-text" id="calanderInformation"><span id="responseCalanderInfo"></span> </p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="Room">
         <div class="modal-dialog modal-xl">
@@ -65,9 +73,9 @@
         </div>
     </div>
 </body>
-<iframe name="RestInterface" style="display: none;"></iframe>
 <script>
     //Load all get Functions
     getCurrentRoomStatus();
+    getCalanderEntryForCurrentDay();
 </script>
 </html>
