@@ -46,13 +46,24 @@ function closeRoom(){
 }
 
 function getCalanderEntryForCurrentDay(){
+    var calender = "";
     content.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             var obj = JSON.parse(this.responseText);
-            calander = obj.date + " <br />" + obj.comment;
-            document.getElementById("responseCalanderInfo").innerHTML = calander;
+            if(obj == ""){
+                calender = "No Entries today";
+            }else {
+                for (var i = 0; i < obj.length; i++) {
+                    calender += obj[i].date + "<br />" + obj[i].comment + "<br /><br /><button class='btn btn-successful' data-id='" + obj[i].uuid + "' data-target='#CalenderEntry' data-toggle='modal' onclick='openCalenderEntry()'>Open</button>";
+                }
+            }
+            document.getElementById("responseCalanderInfo").innerHTML = calender;
         }
     }
     content.open("GET", "/calender", true);
     content.send();
+}
+
+function openCalenderEntry(){
+
 }

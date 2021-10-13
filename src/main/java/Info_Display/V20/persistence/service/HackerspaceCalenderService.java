@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,13 +24,13 @@ public class HackerspaceCalenderService {
 
     Logger log = Logger.getLogger(String.valueOf(this.getClass()));
 
-    public ResponseEntity createCalenderEntry(String comment, LocalDateTime date) throws EntryExistsException, CalenderEntrySaveException {
-        if(repo.findByDateAndComment(date, comment) == null){
-            HackerspaceCalenderEntity entry = new HackerspaceCalenderEntity();
-            entry.setComment(comment);
-            entry.setDate(date);
-            repo.save(entry);
-            if (repo.existsById(entry.getUuid()) == true){
+    public ResponseEntity createCalenderEntry(HackerspaceCalenderEntity entry) throws EntryExistsException, CalenderEntrySaveException {
+        if(repo.findByDateAndComment(entry.getDate(), entry.getComment()) == null){
+            HackerspaceCalenderEntity entity = new HackerspaceCalenderEntity();
+            entity.setComment(entry.getComment());
+            entity.setDate(entry.getDate());
+            repo.save(entity);
+            if (repo.existsById(entity.getUuid()) == true){
                 log.info("Created new Entry");
                 return new ResponseEntity("New Entry saved!", HttpStatus.CREATED);
             }else{
@@ -59,7 +60,7 @@ public class HackerspaceCalenderService {
 
     public HackerspaceCalenderEntity getByDate(LocalDateTime date){ return repo.findByDate(date); }
 
-    public List<HackerspaceCalenderEntity> getByDateContaining(@DateTimeFormat(pattern = "dd-MM-yyyy") LocalDateTime date){
+    public List<HackerspaceCalenderEntity> getByDateContaining(String date){
         return repo.findByDateContaining(date);
     }
 

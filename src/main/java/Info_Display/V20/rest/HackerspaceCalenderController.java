@@ -7,8 +7,10 @@ import Info_Display.V20.persistence.service.HackerspaceCalenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,14 +27,12 @@ public class HackerspaceCalenderController {
 
     @GetMapping(value = "/calender")
     public List<HackerspaceCalenderEntity> getCalenderByDate(){
-        LocalDateTime date = LocalDateTime.now();
-        System.out.println(date);
-        return service.getByDateContaining(date);
+        return service.getByDateContaining(LocalDate.now().toString());
     }
 
-    @PostMapping(value = "/calender{comment, date}")
-    public ResponseEntity createCalenderEntry(@RequestParam("comment") String comment, @RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm") LocalDateTime date) throws CalenderEntrySaveException, EntryExistsException {
-        return service.createCalenderEntry(comment, date);
+    @PostMapping(value = "/calender")
+    public ResponseEntity createCalenderEntry(@RequestBody HackerspaceCalenderEntity entity) throws CalenderEntrySaveException, EntryExistsException {
+        return service.createCalenderEntry(entity);
     }
 
 }

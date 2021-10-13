@@ -1,6 +1,7 @@
 package Info_Display.V20.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,17 +12,13 @@ import java.util.UUID;
 
 @Entity
 @Data
+@JsonIgnoreProperties(value = {"creationDate"})
 public class HackerspaceCalenderEntity {
 
     @Id
     private UUID uuid = UUID.randomUUID();
-
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime creationDate = LocalDateTime.now();
-
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private LocalDateTime date;
-
+    private String date;
     private String comment;
 
 }

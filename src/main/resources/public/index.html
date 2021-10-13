@@ -24,8 +24,8 @@
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Stuff in Space</button>
                     <div class="dropdown-menu">
-                        <button  class="dropdown-item" data-target="#login" data-toggle="modal">Search</button>
-                        <button  class="dropdown-item" data-target="#register" data-toggle="modal">Add New Item</button>
+                        <button  class="dropdown-item" data-target="#search" data-toggle="modal">Search</button>
+                        <button  class="dropdown-item" data-target="#addNewItem" data-toggle="modal">Add New Item</button>
                     </div>
                 </div>
             </li>&nbsp;&nbsp;&nbsp;
@@ -69,6 +69,25 @@
                     <button type="button" class="btn btn-danger" onclick="closeRoom()">Room Close</button>
                 </div>
                 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="CalenderEntry" >
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Calender Informations</h4>
+                    <button class="close" type="button" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <label class="form-label">ID:</label><input class="form-control" type="text" id="id" readonly>
+                        <br />
+                        <label class="form-label">Date:</label><input class="form-control" type="date" id="date">
+                        <br />
+                        <label class="form-label">Comment:</label><input class="form-control" type="text" id="comment">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
