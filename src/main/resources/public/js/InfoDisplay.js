@@ -54,7 +54,8 @@ function getCalanderEntryForCurrentDay(){
                 calender = "No Entries today";
             }else {
                 for (var i = 0; i < obj.length; i++) {
-                    calender += obj[i].date + "<br />" + obj[i].comment + "<br /><br /><button class='btn btn-successful' data-id='" + obj[i].uuid + "' data-target='#CalenderEntry' data-toggle='modal' onclick='openCalenderEntry()'>Open</button>";
+                    calender += obj[i].date + "<br />" + obj[i].comment +
+                        "<br /><a><button class='btn btn-success' onclick='openCalenderEntry(" + obj[i].comment + ")'>Open</button></a><br /><br />";
                 }
             }
             document.getElementById("responseCalanderInfo").innerHTML = calender;
@@ -64,6 +65,6 @@ function getCalanderEntryForCurrentDay(){
     content.send();
 }
 
-function openCalenderEntry(){
-
+function openCalenderEntry(uuid){
+    console.log(uuid);
 }
