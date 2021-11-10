@@ -4,9 +4,9 @@ var content = new XMLHttpRequest();
 function getCurrentRoomStatus(){
     content.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            var obj = JSON.parse(this.responseText);
-            roomStatus = obj.roomStatus;
-            document.getElementById("content").innerHTML = roomStatus;
+            var roomStatusObj = JSON.parse(this.responseText);
+            roomStatus = roomStatusObj.roomStatus;
+            document.getElementById("roomStatus").innerHTML = roomStatus;
         }
     }
     content.open("GET", "/RoomStatus", true);
@@ -54,8 +54,9 @@ function getCalanderEntryForCurrentDay(){
                 calender = "No Entries today";
             }else {
                 for (var i = 0; i < obj.length; i++) {
-                    calender += obj[i].date + "<br />" + obj[i].comment +
-                        "<br /><a><button class='btn btn-success' onclick='openCalenderEntry(" + obj[i].comment + ")'>Open</button></a><br /><br />";
+                    var jsonString = JSON.stringify(obj[i]);
+                    calender += obj[i].date + "<br />" + obj[i].name +
+                        "<br /><a><button class='btn btn-success' onclick='openCalenderEntry(" + jsonString + ")'>Open</button></a><br /><br />";
                 }
             }
             document.getElementById("responseCalanderInfo").innerHTML = calender;
@@ -65,6 +66,33 @@ function getCalanderEntryForCurrentDay(){
     content.send();
 }
 
-function openCalenderEntry(uuid){
-    console.log(uuid);
+function openCalenderEntry(jsonString){
+    $('#CalenderEntry').modal('show');
+    document.getElementById( "id").setAttribute('value', jsonString.id);
+    document.getElementById("date").setAttribute('value', jsonString.date);
+    document.getElementById("name").setAttribute('value', jsonString.name);
+    document.getElementById("comment").setAttribute('value', jsonString.comment);
+}
+
+function saveChange(){
+    var id = document.getElementById("id").value;
+    var date = document.getElementById("date").value;
+    var name = document.getElementById("name").value;
+    var comment = document.getElementById("comment").value;
+
+    var data = JSON.stringify({"id": id, "date": date, "name": name, "comment": comment});
+
+    content.open("PUT", "/calender", true);
+    content.setRequestHeader("Content-Type", "application/json");
+
+    content.onreadystatechange = function () {
+        if(this.status == 304){
+            alert("Entry aren \'t modified");
+        }
+        if (this.readyState == 4 && this.status == 202) {
+            console.log("Entry are updated");
+        }
+    }
+    content.send(data);
+
 }

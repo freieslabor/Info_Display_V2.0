@@ -64,7 +64,7 @@
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Current Room Status: <span id="content"></span></p>
+                    <p>Current Room Status: <span id="roomStatus"></span></p>
                     <button type="button" class="btn btn-success" onclick="openRoom();">Room OPEN</button>
                     <button type="button" class="btn btn-danger" onclick="closeRoom()">Room Close</button>
                 </div>
@@ -81,11 +81,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
-                        <label class="form-label">ID:</label><input class="form-control" type="text" id="id" readonly>
+                        <label class="form-label">ID:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="id" readonly>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="form-label">Date:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="date">
+                    </div>
+                    <div class="input-group mb-3">
                         <br />
-                        <label class="form-label">Date:</label><input class="form-control" type="date" id="date">
+                        <label class="form-label">Name:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="name">
+                    </div>
+                    <div class="input-group mb-3">
                         <br />
-                        <label class="form-label">Comment:</label><input class="form-control" type="text" id="comment">
+                        <label class="form-label">Comment:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="comment">
+                    </div>
+                    <br />
+                    <div class="input-group mb-3">
+                        <button type="button" class="btn btn-success" onclick="saveChange();">Save</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

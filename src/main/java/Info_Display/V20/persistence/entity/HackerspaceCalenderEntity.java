@@ -16,9 +16,10 @@ import java.util.UUID;
 public class HackerspaceCalenderEntity {
 
     @Id
-    private UUID uuid = UUID.randomUUID();
+    private UUID id = UUID.randomUUID();
     private LocalDateTime creationDate = LocalDateTime.now();
     private String date;
+    private String name;
     private String comment;
 
 }
