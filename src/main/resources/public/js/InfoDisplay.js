@@ -86,13 +86,17 @@ function saveChange(){
     content.setRequestHeader("Content-Type", "application/json");
 
     content.onreadystatechange = function () {
-        if(this.status == 304){
-            alert("Entry aren \'t modified");
+        if(this.status == 409){
+            alert(this.responseText);
         }
         if (this.readyState == 4 && this.status == 202) {
-            console.log("Entry are updated");
+            alert(this.responseText)
         }
     }
     content.send(data);
+
+    function deleteCheckEntries(){
+        
+    }
 
 }
