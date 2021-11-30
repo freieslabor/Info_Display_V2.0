@@ -22,7 +22,6 @@ public class HackerspaceRoomStatusService {
 	private Logger log = Logger.getLogger(String.valueOf(this.getClass()));
 	
 	public HackerspaceRoomStatusEntity getCurrentRoomStatus(){
-		log.info("Get request for current RoomStatus");
 		return repo.findFirstByOrderByCreationDateDesc().get(0);
 	}
 	
@@ -31,7 +30,6 @@ public class HackerspaceRoomStatusService {
 		entity.setRoomStatus(roomStatus);
 		repo.save(entity);
 		if(repo.existsById(entity.getId())) {
-			log.info("RoomStatus changed to " + roomStatus);
 			return new ResponseEntity<>("Room Status is " + roomStatus, HttpStatus.CREATED);
 		}else {
 			throw new ChangeRoomStatusException("Room Status can\'t changed");

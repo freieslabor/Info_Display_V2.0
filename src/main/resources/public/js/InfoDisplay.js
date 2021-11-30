@@ -66,6 +66,27 @@ function getCalanderEntryForCurrentDay(){
     content.send();
 }
 
+function getAllCalenderEntries(){
+    var output = "";
+    content.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var obj = JSON.parse(this.responseText);
+            if(obj == ""){
+                output = "No Entires in database";
+            }else {
+                for( var i = 0; i < obj.length; i++){
+                    var jsonString = JSON.stringify(obj[i]);
+                    output += "<div style='margin-left: 2%;'><input class='form-check-input' type='checkbox'>" + obj[i].date + "<br />" + obj[i].name +
+                        "<br /><a><button class='btn btn-success' onclick='openCalenderEntry(" + jsonString + ")'>Open</button></a></div></div><br /><br />";
+                }
+            }
+            document.getElementById("calenderEntries").innerHTML = output;
+        }
+    }
+    content.open("GET", "/calender/All", true);
+    content.send();
+}
+
 function openCalenderEntry(jsonString){
     $('#CalenderEntry').modal('show');
     document.getElementById( "id").setAttribute('value', jsonString.id);
@@ -95,8 +116,28 @@ function saveChange(){
     }
     content.send(data);
 
-    function deleteCheckEntries(){
-        
+}
+
+function createCalenderEntry(){
+    var data = JSON.stringify({"date": document.getElementById("newEntryDate").value, "name": document.getElementById("newEntryName").value, "comment": document.getElementById("newEntryComment").value});
+
+    content.open("POST", "/calender", true);
+    content.setRequestHeader("Content-Type", "application/json");
+
+    content.onreadystatechange = function () {
+        if(this.status == 409){
+            alert(this.responseText);
+        }
+        if (this.readyState == 4 && this.status == 201) {
+            alert(this.responseText);
+            
+        }
     }
+    content.send(data);
+}
+
+function deleteCheckEntries(){
 
 }
+
+
