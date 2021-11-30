@@ -1,5 +1,6 @@
 package Info_Display.V20.lib.Exception;
 
+import Info_Display.V20.lib.Exception.CalenderException.CalenderException;
 import Info_Display.V20.lib.Exception.RoomStatusExceptions.RoomStatusException;
 import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.StuffInSpaceException;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,11 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(NoAccessForipAddressException.class)
     public ResponseEntity<String> handler(NoAccessForipAddressException e){
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(CalenderException.class)
+    public ResponseEntity<String> handler(CalenderException e){
         return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
     }
 }
