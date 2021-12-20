@@ -138,7 +138,7 @@ function createCalenderEntry(){
 }
 
 function deleteCalenderEntry(id){
-    content.open("DELETE", "/calender", false);
+    content.open("DELETE", "/calender/" + id, true);
     content.onreadystatechange = function (){
         if(this.status == 200){
             alert(this.responseText);
@@ -146,8 +146,8 @@ function deleteCalenderEntry(id){
             alert(this.responseText);
         }
     }
-    console.log(content);
-    content.send("?id=" + id);
+   console.log(id);
+    content.send();
     getAllCalenderEntries();
 }
 
