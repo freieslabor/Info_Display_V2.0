@@ -22,11 +22,11 @@ public class StuffInSpaceService {
 
     private Logger log = Logger.getLogger(String.valueOf(this.getClass()));
 
-    public ResponseEntity<StuffInSpaceEntity> createNewEntry(String name, String info, String position) throws CreateStuffInSpaceEntryException {
+    public ResponseEntity<String> createNewEntry(StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
         StuffInSpaceEntity entry = new StuffInSpaceEntity();
-        entry.setName(name);
-        entry.setInfo(info);
-        entry.setPosition(position);
+        entry.setName(entity.getName());
+        entry.setInfo(entity.getInfo());
+        entry.setPosition(entity.getPosition());
 
         repo.save(entry);
 
@@ -56,10 +56,10 @@ public class StuffInSpaceService {
         }
     }
 
-    private ResponseEntity<StuffInSpaceEntity> checkNewEntry(StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
+    private ResponseEntity<String> checkNewEntry(StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
         if(repo.existsById(entity.getUuid())){
             log.info("StuffInSpace Entry are created!");
-            return new ResponseEntity<StuffInSpaceEntity>(entity, HttpStatus.CREATED);
+            return new ResponseEntity<String>("New Item Stuff in Space are created", HttpStatus.CREATED);
         }else{
             throw new CreateStuffInSpaceEntryException("Entry can\'t created");
         }
