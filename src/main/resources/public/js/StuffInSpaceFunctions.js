@@ -37,6 +37,7 @@ function getListOfSeachingItems(){
                 output += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'></button></button></div>"
             }
         }
+        document.getElementById("SISItems").innerHTML = output;
     }
 }
 
