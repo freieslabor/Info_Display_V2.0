@@ -14,6 +14,7 @@
     <link href="css/style.css" rel="stylesheet">
     <script src="js/InfoDisplay.js"></script>
     <script src="js/CalenderFunctions.js"></script>
+    <script src="js/StuffInSpaceFunctions.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navbar">
@@ -74,37 +75,6 @@
                 <button type="button" class="btn btn-danger" onclick="closeRoom()">Room Close</button>
             </div>
             <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="CalenderEntry" >
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Calender Informations</h4>
-                <button class="close" type="button" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <label class="form-label">ID:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="id" readonly>
-                </div>
-                <div class="input-group mb-3">
-                    <label class="form-label">Date:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="date">
-                </div>
-                <div class="input-group mb-3">
-                    <br />
-                    <label class="form-label">Name:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="name">
-                </div>
-                <div class="input-group mb-3">
-                    <br />
-                    <label class="form-label">Comment:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="comment">
-                </div>
-                <br />
-                <div class="input-group mb-3">
-                    <button type="button" class="btn btn-success" onclick="saveChange();">Save</button>&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -174,6 +144,69 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" onclick="createStuffInSpaceItem()">Save</button>
+                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CalenderEntry" >
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Calender Informations</h4>
+                <button class="close" type="button" data-dismiss="modal">x</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <label class="form-label">ID:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="id" readonly>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="form-label">Date:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="date">
+                </div>
+                <div class="input-group mb-3">
+                    <br />
+                    <label class="form-label">Name:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="name">
+                </div>
+                <div class="input-group mb-3">
+                    <br />
+                    <label class="form-label">Comment:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="comment">
+                </div>
+                <br />
+                <div class="input-group mb-3">
+                    <button type="button" class="btn btn-success" onclick="saveChange();">Save</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ItemDetails" >
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Stuff in Space Item Information</h4>
+                <button class="close" type="button" data-dismiss="modal">x</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <label class="form-label">ID:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="ItemEntryId" readonly>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="form-label">Name:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="ItemEntryName">
+                </div>
+                <div class="input-group mb-3">
+                    <br />
+                    <label class="form-label">Name:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="ItemEntryPosition">
+                </div>
+                <div class="input-group mb-3">
+                    <br />
+                    <label class="form-label">Comment:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="ItemEntryInformation">
+                </div>
+                <br />
+                <div class="input-group mb-3">
+                    <button type="button" class="btn btn-success" onclick="saveChange();">Save</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
