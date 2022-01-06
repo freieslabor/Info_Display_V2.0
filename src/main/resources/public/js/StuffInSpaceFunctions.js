@@ -1,4 +1,5 @@
 var content = new XMLHttpRequest();
+var searchedItem;
 
 function createStuffInSpaceItem(){
     var name = document.getElementById("ItemName").value;
@@ -21,25 +22,27 @@ function createStuffInSpaceItem(){
     }
 }
 
-function getListOfSeachingItems(){
-    var output = "";
-    var item = document.getElementById("item").value;
+function seachingItems(){
+    searchedItem = "";
+    var item = document.getElementById("itemForSearch").value;
 
-    content.open("GET", "/StuffInSpace/Find", false);
-    content.send("?name=" + item);
+    console.log(item);
+    content.open("GET", "/StuffInSpace/Find?name=" + item, false);
+    content.send();
 
     content.onreadystatechange = function () {
+        console.log(this.responseText);
         var obj = JSON.parse(this.responseText);
         if(obj == ""){
-            output = "No Entires in database";
+            searchedItem = "No Entires in database";
         }else {
             for (var i = 0; i < obj.length; i++){
-                output += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'></button></button></div>"
+                searchedItem += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'></button></div>"
             }
         }
-        document.getElementById("SISItems").innerHTML = output;
     }
 }
+
 
 function openDetails(object){
     $('#ItemDetials').modal('show');
