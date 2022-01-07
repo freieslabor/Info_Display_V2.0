@@ -1,4 +1,4 @@
-var content = new XMLHttpRequest();
+var sisRequest = new XMLHttpRequest();
 var searchedItem;
 
 function createStuffInSpaceItem(){
@@ -8,11 +8,11 @@ function createStuffInSpaceItem(){
 
     var data = JSON.stringify({"name": name, "position": position, "info": info});
 
-    content.open("POST", "/StuffInSpace", false);
-    content.setRequestHeader("Content-Type", "application/json");
-    content.send(data);
+    sisRequest.open("POST", "/StuffInSpace", false);
+    sisRequest.setRequestHeader("Content-Type", "application/json");
+    sisRequest.send(data);
 
-    content.onreadystatechange = function(){
+    sisRequest.onreadystatechange = function(){
         if(this.status == 201){
             alert(this.responseText);
         }else{
@@ -26,23 +26,23 @@ function seachingItems(){
     searchedItem = "";
     var item = document.getElementById("itemForSearch").value;
 
-    console.log(item);
-    content.open("GET", "/StuffInSpace/Find?name=" + item, false);
-    content.send();
+    sisRequest.open("GET", "/StuffInSpace/Find?name=" + item, false);
+    sisRequest.send();
 
-    content.onreadystatechange = function () {
-        console.log(this.responseText);
+    sisRequest.onreadystatechange = function () {
         var obj = JSON.parse(this.responseText);
+        console.log(obj);
         if(obj == ""){
             searchedItem = "No Entires in database";
         }else {
             for (var i = 0; i < obj.length; i++){
-                searchedItem += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'></button></div>"
+                searchedItem += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'>Open</button></div>"
             }
         }
+        $('#searchItems').modal('show');
+        $("#searchItemsBody").html(searchedItem);
     }
 }
-
 
 function openDetails(object){
     $('#ItemDetials').modal('show');

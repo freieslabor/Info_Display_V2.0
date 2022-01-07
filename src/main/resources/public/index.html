@@ -54,11 +54,16 @@
 </nav>
 <div class="container">
     <div class="serverInformation">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
                 <h5 class="card-title">Search Stuff in Space Item</h5><br />
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="itemForSearch" placeholder="item">
                     <button type="button" class="btn btn-secondary" onclick="seachingItems()">Search</button>
+                    <p class="card-text"><span id="sisItems"></span></p>
                 </div>
+            </div>
+        </div>
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h5 class="card-title">Todays Calander Information:</h5>
@@ -110,7 +115,7 @@
             </div>
             <div class="modal-body">
                 <div class="input-group mb-3">
-                    <label class="form-label">Date:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="newEntryDate">
+                    <label class="form-label">Date:</label>&nbsp;&nbsp;&nbsp;<input class="form-control" type="text" id="newEntryDate" placeholder="Format: YYYY-MM-DD HH:MM">
                 </div>
                 <div class="input-group mb-3">
                     <br />
@@ -181,6 +186,19 @@
                     <button type="button" class="btn btn-success" onclick="saveChange();">Save</button>&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="searchItems">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Searched Items</h4>
+                <button class="close" type="button" data-dismiss="modal">x</button>
+            </div>
+            <div class="modal-body">
+                <p id="searchItemsBody"></p>
             </div>
         </div>
     </div>
