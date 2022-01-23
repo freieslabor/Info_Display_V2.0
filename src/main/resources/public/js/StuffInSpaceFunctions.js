@@ -30,13 +30,14 @@ function seachingItems(){
     sisRequest.send();
 
     sisRequest.onreadystatechange = function () {
-        var obj = JSON.parse(this.responseText);
-        console.log(obj);
-        if(obj == ""){
-            searchedItem = "No Entires in database";
-        }else {
-            for (var i = 0; i < obj.length; i++){
-                searchedItem += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'>Open</button></div>"
+        if(this.readyState == 4) {
+            var obj = JSON.parse(this.responseText);
+            if (obj == "") {
+                searchedItem = "No Entires in database";
+            } else {
+                for (var i = 0; i < obj.length; i++) {
+                    searchedItem += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'>Open</button></div>"
+                }
             }
         }
         $('#searchItems').modal('show');
@@ -45,6 +46,7 @@ function seachingItems(){
 }
 
 function openDetails(object){
+    console.log(object);
     $('#ItemDetials').modal('show');
     document.getElementById( "ItemEntryId").setAttribute('value', object.id);
     document.getElementById("ItemEntryName").setAttribute('value', object.name);

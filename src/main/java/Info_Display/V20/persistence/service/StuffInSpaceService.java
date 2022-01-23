@@ -34,9 +34,9 @@ public class StuffInSpaceService {
 
     }
 
-    public ResponseEntity<List<StuffInSpaceEntity>> getEntryByContaining(String name){ log.info("Get request for Contatining search!");return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findByNameContaining(name), HttpStatus.OK); }
+    public ResponseEntity<List<StuffInSpaceEntity>> getEntryByContaining(String name){ return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findByNameContaining(name), HttpStatus.OK); }
 
-    public ResponseEntity<List<StuffInSpaceEntity>> getAllEntrys(){ log.info("Get request for all StuffInSpace Entrys"); return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findAll(), HttpStatus.OK); }
+    public ResponseEntity<List<StuffInSpaceEntity>> getAllEntrys(){ return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findAll(), HttpStatus.OK); }
 
     public ResponseEntity<String> deleteEntry(UUID id) throws FindEntryException, DeleteEntryException {
         if (repo.existsById(id)) {
