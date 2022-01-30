@@ -1,9 +1,11 @@
 package Info_Display.V20.rest;
 
 import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.CreateStuffInSpaceEntryException;
+import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.FindEntryException;
 import Info_Display.V20.persistence.entity.StuffInSpaceEntity;
 import Info_Display.V20.persistence.service.StuffInSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,12 @@ public class StuffInSpaceController {
     @GetMapping(value = "/StuffInSpace/Find{name}")
     public ResponseEntity<List<StuffInSpaceEntity>> getEntriesByContaining(@RequestParam("name") String name){
         return service.getEntryByContaining(name);
+    }
+
+    @PutMapping(value = "/StuffInSpace")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateEntry(@RequestBody StuffInSpaceEntity entity) throws FindEntryException {
+        service.updateEntry(entity);
     }
 
 }

@@ -64,4 +64,16 @@ public class StuffInSpaceService {
             throw new CreateStuffInSpaceEntryException("Entry can\'t created");
         }
     }
+
+    public void updateEntry(StuffInSpaceEntity entity) throws FindEntryException {
+        if(repo.existsById(entity.getUuid())){
+            StuffInSpaceEntity entry = repo.getOne(entity.getUuid());
+            entry.setName(entity.getName());
+            entry.setInfo(entity.getInfo());
+            entry.setPosition(entity.getPosition());
+            repo.save(entry);
+        }else{
+            throw new FindEntryException("Enrty with UUID: " + entity.getUuid() + " doesn\'t existed!");
+        }
+    }
 }

@@ -36,7 +36,8 @@ function seachingItems(){
                 searchedItem = "No Entires in database";
             } else {
                 for (var i = 0; i < obj.length; i++) {
-                    searchedItem += "<div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%;'><button class='btn btn-primary' onclick='openDetails(" + obj[i] + ")'>Open</button></div>"
+                    var detailJSON = JSON.stringify(obj[i]);
+                    searchedItem += "<li class='list-group-item'><div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%; margin-top: -30px'><button class='btn btn-primary' onclick='openDetails(" + detailJSON + ")'>Open</button></div></li>"
                 }
             }
         }
@@ -48,7 +49,7 @@ function seachingItems(){
 function openDetails(object){
     console.log(object);
     $('#ItemDetials').modal('show');
-    document.getElementById( "ItemEntryId").setAttribute('value', object.id);
+    document.getElementById( "ItemEntryId").setAttribute('value', object.uuid);
     document.getElementById("ItemEntryName").setAttribute('value', object.name);
     document.getElementById("ItemEntryPosition").setAttribute('value', object.position);
     document.getElementById("ItemEntryInformation").setAttribute('value', object.info);
