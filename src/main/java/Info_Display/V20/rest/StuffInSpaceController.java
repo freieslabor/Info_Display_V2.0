@@ -1,6 +1,7 @@
 package Info_Display.V20.rest;
 
 import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.CreateStuffInSpaceEntryException;
+import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.DeleteEntryException;
 import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.FindEntryException;
 import Info_Display.V20.persistence.entity.StuffInSpaceEntity;
 import Info_Display.V20.persistence.service.StuffInSpaceService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class StuffInSpaceController {
@@ -36,6 +38,12 @@ public class StuffInSpaceController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateEntry(@RequestBody StuffInSpaceEntity entity) throws FindEntryException {
         service.updateEntry(entity);
+    }
+
+    @DeleteMapping(value = "/StuffInSpace{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteEntry(@RequestParam("id") UUID id) throws FindEntryException, DeleteEntryException {
+        service.deleteEntryByUUID(id);
     }
 
 }

@@ -54,3 +54,20 @@ function openDetails(object){
     document.getElementById("ItemEntryPosition").setAttribute('value', object.position);
     document.getElementById("ItemEntryInformation").setAttribute('value', object.info);
 }
+
+function deleteEntry(){
+    var id = document.getElementById("ItemEntryId").value;
+    sisRequest.open("DELETE", "/StuffInSpace?id=" + id, false);
+    sisRequest.send();
+
+    sisRequest.onreadystatechange = function () {
+        if(this.status === 409){
+            alert(this.responseText);
+        }
+        if (this.status === 202){
+            alert("Deleting was successful!");
+        }else{
+            alert("Unknown Failure! <br />" + this.responseText);
+        }
+    }
+}

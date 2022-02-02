@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:C:\\Users\\Janosch\\Desktop\\InfoDisplay\\InfoDisplayDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:~/Desktop/InfoDisplay/InfoDisplayDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     data-username: InfoDisplay
     data-password: password

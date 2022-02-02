@@ -76,4 +76,15 @@ public class StuffInSpaceService {
             throw new FindEntryException("Enrty with UUID: " + entity.getUuid() + " doesn\'t existed!");
         }
     }
+
+    public void deleteEntryByUUID(UUID id) throws FindEntryException, DeleteEntryException {
+        if(repo.existsById(id)){
+            repo.deleteById(id);
+            if (repo.existsById(id)){
+                throw new DeleteEntryException("Deleting wasn\'t successful!");
+            }
+        }else {
+            throw new FindEntryException("Entry with UUID: " + id + " dosen\'t exsists!");
+        }
+    }
 }
