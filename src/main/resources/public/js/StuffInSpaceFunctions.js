@@ -46,6 +46,29 @@ function seachingItems(){
     }
 }
 
+function searchingItemFromModal(){
+    searchedItem = "";
+    var item = document.getElementById("itemForSearching").value;
+
+    sisRequest.open("GET", "/StuffInSpace/Find?name=" + item, false);
+    sisRequest.send();
+
+    sisRequest.onreadystatechange = function () {
+        if(this.readyState == 4) {
+            var obj = JSON.parse(this.responseText);
+            if (obj == "") {
+                searchedItem = "No Entires in database";
+            } else {
+                for (var i = 0; i < obj.length; i++) {
+                    var detailJSON = JSON.stringify(obj[i]);
+                    searchedItem += "<li class='list-group-item'><div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%; margin-top: -30px'><button class='btn btn-primary' onclick='openDetails(" + detailJSON + ")'>Open</button></div></li>"
+                }
+            }
+        }
+        $("#returnSearchedItems").html(searchedItem);
+    }
+}
+
 function openDetails(object){
     console.log(object);
     $('#ItemDetials').modal('show');

@@ -64,7 +64,6 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="itemForSearch" placeholder="item">
                     <button type="button" class="btn btn-secondary" onclick="seachingItems();">Search</button>
-                    <p class="card-text"><span id="sisItems"></span></p>
                 </div>
             </div>
         </div>
@@ -191,6 +190,23 @@
                     <button type="button" class="btn btn-success" onclick="saveChange();">Save</button>&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="searchSIS">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search Stuff in "Hacker"Space</h4>
+                <button class="close" type="button" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <input type="text" class="form-control" id="itemForSearching" placeholder="item">
+                    <button type="button" class="btn btn-secondary" onclick="searchingItemFromModal();">Search</button>
+                </ul>
+                <p id="returnSearchedItems"></p>
             </div>
         </div>
     </div>
