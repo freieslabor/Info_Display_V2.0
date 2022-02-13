@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface HackerspaceCalenderRepository extends JpaRepository<HackerspaceCalenderEntity, UUID> {
 
-    public HackerspaceCalenderEntity findByDateAndComment(String date, String comment);
+    public HackerspaceCalenderEntity findByDateAndName(String date, String name);
     public List<HackerspaceCalenderEntity> findByDateContaining(String date);
     public HackerspaceCalenderEntity findByDate(LocalDateTime date);
 

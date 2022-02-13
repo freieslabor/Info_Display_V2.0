@@ -1,6 +1,5 @@
 div.container{
     margin-top: 10%;
-    border: 1px solid black;
 }
 #Command{
 margin-top:10%;
@@ -10,6 +9,29 @@ div.fastButtons{
 }
 
 div.serverInformation{
-    margin-top: 5%;
+    margin-top: 25%;
     margin-bottom: 10%;
+}
+
+body{
+    background-color: #2f3234;
+}
+
+div.card{
+    opacity: 0.8;
+}
+
+a.icon{
+    float: right;
+}
+
+#links{
+    margin-top: 100px;
+    margin-left: -5%;
+    display: none;
+}
+#Title{
+    font-size: 16pt;
+    color: white;
+    margin-top: 10px;
 }

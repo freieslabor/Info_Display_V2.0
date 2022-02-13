@@ -1,18 +1,17 @@
 package Info_Display.V20.rest;
 
 import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.CreateStuffInSpaceEntryException;
+import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.DeleteEntryException;
+import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.FindEntryException;
 import Info_Display.V20.persistence.entity.StuffInSpaceEntity;
 import Info_Display.V20.persistence.service.StuffInSpaceService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.UUID;
 
 @RestController
 public class StuffInSpaceController {
@@ -25,14 +24,26 @@ public class StuffInSpaceController {
         return service.getAllEntrys();
     }
 
-    @PostMapping(value = "/StuffInSpace{name,info,postion}")
-    public ResponseEntity<StuffInSpaceEntity> createStuffInSpaceEntry(@RequestParam("name") String name, @RequestParam("info") String info, @RequestParam("position") String position) throws CreateStuffInSpaceEntryException {
-        return service.createNewEntry(name, info, position);
+    @PostMapping(value = "/StuffInSpace")
+    public ResponseEntity<String> createStuffInSpaceEntry(@RequestBody StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
+        return service.createNewEntry(entity);
     }
 
     @GetMapping(value = "/StuffInSpace/Find{name}")
     public ResponseEntity<List<StuffInSpaceEntity>> getEntriesByContaining(@RequestParam("name") String name){
         return service.getEntryByContaining(name);
+    }
+
+    @PutMapping(value = "/StuffInSpace")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateEntry(@RequestBody StuffInSpaceEntity entity) throws FindEntryException {
+        service.updateEntry(entity);
+    }
+
+    @DeleteMapping(value = "/StuffInSpace{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteEntry(@RequestParam("id") UUID id) throws FindEntryException, DeleteEntryException {
+        service.deleteEntryByUUID(id);
     }
 
 }

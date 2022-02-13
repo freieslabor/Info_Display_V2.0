@@ -24,7 +24,7 @@ public class HackerspaceCalenderService {
     Logger log = Logger.getLogger(String.valueOf(this.getClass()));
 
     public ResponseEntity createCalenderEntry(HackerspaceCalenderEntity entry) throws EntryExistsException, CalenderEntrySaveException {
-        if(repo.findByDateAndComment(entry.getDate(), entry.getComment()) == null){
+        if(repo.findByDateAndName(entry.getDate(), entry.getName()) == null){
             HackerspaceCalenderEntity entity = new HackerspaceCalenderEntity();
             entity.setName(entry.getName());
             entity.setComment(entry.getComment());
@@ -42,11 +42,10 @@ public class HackerspaceCalenderService {
 
     }
 
-    public ResponseEntity<String> deleteCalenderEntry(HackerspaceCalenderEntity entry) throws CalenderEntryDeleteException, EntryExistsException {
-        if(repo.existsById(entry.getId())){
-            repo.deleteById(entry.getId());
-            if(!repo.existsById(entry.getId())){
-                log.warning("Request for deleted a Entry");
+    public ResponseEntity<String> deleteCalenderEntry(UUID id) throws CalenderEntryDeleteException, EntryExistsException {
+        if(repo.existsById(id)){
+            repo.deleteById(id);
+            if(!repo.existsById(id)){
                 return new ResponseEntity<String>("Deleted successful!", HttpStatus.OK);
             }else{
                 throw new CalenderEntryDeleteException("Entry can\'t deleted");

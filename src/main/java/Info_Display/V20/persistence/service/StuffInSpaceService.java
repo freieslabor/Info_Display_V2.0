@@ -22,11 +22,11 @@ public class StuffInSpaceService {
 
     private Logger log = Logger.getLogger(String.valueOf(this.getClass()));
 
-    public ResponseEntity<StuffInSpaceEntity> createNewEntry(String name, String info, String position) throws CreateStuffInSpaceEntryException {
+    public ResponseEntity<String> createNewEntry(StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
         StuffInSpaceEntity entry = new StuffInSpaceEntity();
-        entry.setName(name);
-        entry.setInfo(info);
-        entry.setPosition(position);
+        entry.setName(entity.getName());
+        entry.setInfo(entity.getInfo());
+        entry.setPosition(entity.getPosition());
 
         repo.save(entry);
 
@@ -34,9 +34,9 @@ public class StuffInSpaceService {
 
     }
 
-    public ResponseEntity<List<StuffInSpaceEntity>> getEntryByContaining(String name){ log.info("Get request for Contatining search!");return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findByNameContaining(name), HttpStatus.OK); }
+    public ResponseEntity<List<StuffInSpaceEntity>> getEntryByContaining(String name){ return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findByNameContaining(name), HttpStatus.OK); }
 
-    public ResponseEntity<List<StuffInSpaceEntity>> getAllEntrys(){ log.info("Get request for all StuffInSpace Entrys"); return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findAll(), HttpStatus.OK); }
+    public ResponseEntity<List<StuffInSpaceEntity>> getAllEntrys(){ return new ResponseEntity<List<StuffInSpaceEntity>>(repo.findAll(), HttpStatus.OK); }
 
     public ResponseEntity<String> deleteEntry(UUID id) throws FindEntryException, DeleteEntryException {
         if (repo.existsById(id)) {
@@ -56,12 +56,35 @@ public class StuffInSpaceService {
         }
     }
 
-    private ResponseEntity<StuffInSpaceEntity> checkNewEntry(StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
+    private ResponseEntity<String> checkNewEntry(StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
         if(repo.existsById(entity.getUuid())){
             log.info("StuffInSpace Entry are created!");
-            return new ResponseEntity<StuffInSpaceEntity>(entity, HttpStatus.CREATED);
+            return new ResponseEntity<String>("New Item Stuff in Space are created", HttpStatus.CREATED);
         }else{
             throw new CreateStuffInSpaceEntryException("Entry can\'t created");
+        }
+    }
+
+    public void updateEntry(StuffInSpaceEntity entity) throws FindEntryException {
+        if(repo.existsById(entity.getUuid())){
+            StuffInSpaceEntity entry = repo.getOne(entity.getUuid());
+            entry.setName(entity.getName());
+            entry.setInfo(entity.getInfo());
+            entry.setPosition(entity.getPosition());
+            repo.save(entry);
+        }else{
+            throw new FindEntryException("Enrty with UUID: " + entity.getUuid() + " doesn\'t existed!");
+        }
+    }
+
+    public void deleteEntryByUUID(UUID id) throws FindEntryException, DeleteEntryException {
+        if(repo.existsById(id)){
+            repo.deleteById(id);
+            if (repo.existsById(id)){
+                throw new DeleteEntryException("Deleting wasn\'t successful!");
+            }
+        }else {
+            throw new FindEntryException("Entry with UUID: " + id + " dosen\'t exsists!");
         }
     }
 }
