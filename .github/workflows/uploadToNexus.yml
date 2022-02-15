@@ -21,8 +21,7 @@ jobs:
           serverUrl: http://joschi87.net:6660/nexus
           username: githubUploader
           password: ${{ secrets.nexuspassword }}
-          format: maven2
+          format: jar
           repository: info-display
-          coordinates: version=1.0.0
-          assets: extension=jar
+          assets: extension=jar filename=InfoDisplay.jar
           filename: ./target/InfoDisplay.jar
