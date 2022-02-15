@@ -23,5 +23,6 @@ jobs:
           password: ${{ secrets.nexuspassword }}
           format: jar
           repository: info-display
+          coordinates: version=1.0.0
           assets: extension=jar filename=InfoDisplay.jar
           filename: ./target/InfoDisplay.jar
