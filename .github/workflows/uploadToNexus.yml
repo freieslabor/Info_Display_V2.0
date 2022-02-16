@@ -1,6 +1,8 @@
 name: Java with Nexus Repository
 
-on: 
+on:
+  push:
+    branches: '**'
   pull_request:
     branches: [ master ]
 
