@@ -6,8 +6,6 @@ name: Java CI with Maven
 on:
   push:
     branches: '**'
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -21,4 +19,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn install --file pom.xml
+      run: mvn install -DskipTests --file pom.xml
