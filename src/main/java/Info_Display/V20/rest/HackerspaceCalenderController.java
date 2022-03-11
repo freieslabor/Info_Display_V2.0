@@ -1,6 +1,5 @@
 package Info_Display.V20.rest;
 
-import Info_Display.V20.lib.Exception.CalenderException.*;
 import Info_Display.V20.persistence.entity.HackerspaceCalenderEntity;
 import Info_Display.V20.persistence.service.HackerspaceCalenderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +32,17 @@ public class HackerspaceCalenderController {
     }
 
     @PostMapping(value = "/calender")
-    public ResponseEntity createCalenderEntry(@RequestBody HackerspaceCalenderEntity entity) throws CalenderEntrySaveException, EntryExistsException {
+    public ResponseEntity createCalenderEntry(@RequestBody HackerspaceCalenderEntity entity) {
         return service.createCalenderEntry(entity);
     }
 
     @PutMapping(value = "/calender")
-    public ResponseEntity<String> updateCalenderEntry(@RequestBody HackerspaceCalenderEntity entry) throws EntryExistsException {
+    public ResponseEntity<String> updateCalenderEntry(@RequestBody HackerspaceCalenderEntity entry)  {
         return service.updateCalenderEntry(entry);
     }
 
     @DeleteMapping(value = "/calender/{id}")
-    public ResponseEntity<String> deleteEntryByID(@PathVariable("id") UUID uuid) throws CalenderEntryDeleteException, EntryExistsException {
+    public ResponseEntity<String> deleteEntryByID(@PathVariable("id") UUID uuid) {
         return service.deleteCalenderEntry(uuid);
     }
 

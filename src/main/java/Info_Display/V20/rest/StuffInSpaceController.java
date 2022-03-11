@@ -1,8 +1,5 @@
 package Info_Display.V20.rest;
 
-import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.CreateStuffInSpaceEntryException;
-import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.DeleteEntryException;
-import Info_Display.V20.lib.Exception.StuffInSpaceExceptions.FindEntryException;
 import Info_Display.V20.persistence.entity.StuffInSpaceEntity;
 import Info_Display.V20.persistence.service.StuffInSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,7 @@ public class StuffInSpaceController {
     }
 
     @PostMapping(value = "/StuffInSpace")
-    public ResponseEntity<String> createStuffInSpaceEntry(@RequestBody StuffInSpaceEntity entity) throws CreateStuffInSpaceEntryException {
+    public ResponseEntity<String> createStuffInSpaceEntry(@RequestBody StuffInSpaceEntity entity) {
         return service.createNewEntry(entity);
     }
 
@@ -36,13 +33,13 @@ public class StuffInSpaceController {
 
     @PutMapping(value = "/StuffInSpace")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateEntry(@RequestBody StuffInSpaceEntity entity) throws FindEntryException {
+    public void updateEntry(@RequestBody StuffInSpaceEntity entity) {
         service.updateEntry(entity);
     }
 
     @DeleteMapping(value = "/StuffInSpace{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteEntry(@RequestParam("id") UUID id) throws FindEntryException, DeleteEntryException {
+    public void deleteEntry(@RequestParam("id") UUID id) {
         service.deleteEntryByUUID(id);
     }
 
