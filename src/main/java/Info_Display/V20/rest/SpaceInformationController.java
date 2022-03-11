@@ -1,8 +1,8 @@
 package Info_Display.V20.rest;
 
-import Info_Display.V20.lib.Exception.SpaceInformationException.SpaceInformationException;
 import Info_Display.V20.persistence.entity.SpaceInfromationEntity;
 import Info_Display.V20.persistence.service.SpaceInformationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,23 @@ public class SpaceInformationController {
 
     @PostMapping(value = "/SpaceInformation")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createSpaceInformation(@RequestBody SpaceInfromationEntity entity) throws SpaceInformationException {
+    public void createSpaceInformation(@RequestBody SpaceInfromationEntity entity) {
         service.createSpaceInformation(entity);
     }
 
     @GetMapping(value = "/SpaceInformation/ALl")
     public ResponseEntity<List<SpaceInfromationEntity>> getAllSpaceInformation(){
         return service.getAllSpaceInformation();
+    }
+
+    @GetMapping(value = "/SpaceInformation{title}")
+    public ResponseEntity<SpaceInfromationEntity> getInformationByTitle(@RequestParam("title") String title) {
+        return service.getInformationByTitle(title);
+    }
+
+    @PutMapping(value = "/SpaceInformation")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateSpaceInformation(@RequestBody SpaceInfromationEntity entity) throws JsonProcessingException {
+        service.updateInformation(entity);
     }
 }

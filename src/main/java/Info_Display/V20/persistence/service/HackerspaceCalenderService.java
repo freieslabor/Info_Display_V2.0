@@ -1,14 +1,12 @@
 package Info_Display.V20.persistence.service;
 
-import Info_Display.V20.lib.Exception.CalenderException.CalenderEntryDeleteException;
-import Info_Display.V20.lib.Exception.CalenderException.CalenderEntrySaveException;
-import Info_Display.V20.lib.Exception.CalenderException.EntryExistsException;
 import Info_Display.V20.persistence.entity.HackerspaceCalenderEntity;
 import Info_Display.V20.persistence.repositroy.HackerspaceCalenderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,7 +21,7 @@ public class HackerspaceCalenderService {
 
     Logger log = Logger.getLogger(String.valueOf(this.getClass()));
 
-    public ResponseEntity createCalenderEntry(HackerspaceCalenderEntity entry) throws EntryExistsException, CalenderEntrySaveException {
+    public ResponseEntity createCalenderEntry(HackerspaceCalenderEntity entry){
         if(repo.findByDateAndName(entry.getDate(), entry.getName()) == null){
             HackerspaceCalenderEntity entity = new HackerspaceCalenderEntity();
             entity.setName(entry.getName());
@@ -34,28 +32,28 @@ public class HackerspaceCalenderService {
                 log.info("Created new Entry");
                 return new ResponseEntity("New Entry saved!", HttpStatus.CREATED);
             }else{
-                throw new CalenderEntrySaveException("Entry can\'t saved!");
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Entry can\'t saved!");
             }
         }else{
-            throw new EntryExistsException("Entry exisits in Database");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Entry exisits in Database");
         }
 
     }
 
-    public ResponseEntity<String> deleteCalenderEntry(UUID id) throws CalenderEntryDeleteException, EntryExistsException {
+    public ResponseEntity deleteCalenderEntry(UUID id) {
         if(repo.existsById(id)){
             repo.deleteById(id);
             if(!repo.existsById(id)){
-                return new ResponseEntity<String>("Deleted successful!", HttpStatus.OK);
+                return new ResponseEntity<>("Deleted successful!", HttpStatus.OK);
             }else{
-                throw new CalenderEntryDeleteException("Entry can\'t deleted");
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Entry can\'t deleted");
             }
         }else{
-            throw new EntryExistsException("Service can\'t find this entry");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Calender entry with id: " + id + " dosen\'t exisits");
         }
     }
 
-    public ResponseEntity<String> updateCalenderEntry(HackerspaceCalenderEntity entry) throws EntryExistsException {
+    public ResponseEntity<String> updateCalenderEntry(HackerspaceCalenderEntity entry){
         if (repo.existsById(entry.getId())){
             HackerspaceCalenderEntity entity = repo.getOne(entry.getId());
             entity.setName(entry.getName());
@@ -66,7 +64,7 @@ public class HackerspaceCalenderService {
             repo.save(entity);
             return new ResponseEntity<String>("Update successful!", HttpStatus.ACCEPTED);
         }else{
-            throw new EntryExistsException("Entry with id: " + entry.getId() + " dosen \'t existed in the database");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entry with id: " + entry.getId() + " dosen\'t existed in the database");
         }
 
     }
