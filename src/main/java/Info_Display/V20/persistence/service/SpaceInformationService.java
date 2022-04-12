@@ -24,49 +24,54 @@ public class SpaceInformationService {
     private ObjectMapper mapper = new ObjectMapper();
 
     public void createSpaceInformation(SpaceInfromationEntity entity) {
-        if (!repo.exisitsByTitle(entity.getTitle())){
+        if (!repo.existsByTitle(entity.getTitle())) {
             entity.setCreationDate(LocalDateTime.now());
             entity.setModificationDate(entity.getCreationDate());
             repo.save(entity);
             controlCreateSpaceInfo(entity.getId());
-        }else{
+        } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Space Information with the title: " + entity.getTitle() + " already exisits!");
         }
     }
 
     public void updateInformation(SpaceInfromationEntity entity) throws JsonProcessingException {
-        if (repo.existsById(entity.getId())){
+        if (repo.existsById(entity.getId())) {
             SpaceInfromationEntity entityToUpdated = repo.getOne(entity.getId());
             entityToUpdated.setInfo(entity.getInfo());
             entityToUpdated.setTitle(entity.getTitle());
             entityToUpdated.setModificationDate(LocalDateTime.now());
             repo.save(entityToUpdated);
             controlUpdate(entityToUpdated);
-        }else {
+        } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entry with uuid: " + entity.getId() + " dosen\'t exisits");
         }
     }
 
-    public ResponseEntity<List<SpaceInfromationEntity>> getAllSpaceInformation(){ return  new ResponseEntity<>(repo.findAll(), HttpStatus.OK);}
+    public List<SpaceInfromationEntity> getAllSpaceInformation() {
+        if(repo.findAll().isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "List is empty");
+        }
+        return repo.findAll();
+    }
 
     private void controlCreateSpaceInfo(UUID id) {
-        if(!repo.existsById(id)){
+        if (!repo.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Save failed!");
         }
     }
 
     private void controlUpdate(SpaceInfromationEntity entity) throws JsonProcessingException {
-            JsonNode entityDB = mapper.readTree(String.valueOf(repo.getOne(entity.getId())));
-            JsonNode entityToUpdate = mapper.readTree(String.valueOf(entity));
-            if (!entityDB.equals(entityToUpdate)){
-                throw new ResponseStatusException(HttpStatus.CONFLICT, "Update failed! Entry to update are not equal to the entry from the database");
-            }
+        JsonNode entityDB = mapper.readTree(String.valueOf(repo.getOne(entity.getId())));
+        JsonNode entityToUpdate = mapper.readTree(String.valueOf(entity));
+        if (!entityDB.equals(entityToUpdate)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Update failed! Entry to update are not equal to the entry from the database");
+        }
     }
 
-    public ResponseEntity<SpaceInfromationEntity> getInformationByTitle(String title){
-        if (repo.exisitsByTitle(title)){
+    public ResponseEntity<SpaceInfromationEntity> getInformationByTitle(String title) {
+        if (repo.existsByTitle(title)) {
             return new ResponseEntity<>(repo.findByTitle(title), HttpStatus.OK);
-        }else{
+        } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Space Information with the title: " + title + " doesn\'t exisits");
         }
     }

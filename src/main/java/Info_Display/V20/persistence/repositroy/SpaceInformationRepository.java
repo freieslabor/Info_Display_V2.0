@@ -8,6 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface SpaceInformationRepository extends JpaRepository<SpaceInfromationEntity, UUID> {
-    boolean exisitsByTitle(String title);
+    boolean existsByTitle(String title);
     SpaceInfromationEntity findByTitle(String title);
 }

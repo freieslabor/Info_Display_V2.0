@@ -22,9 +22,9 @@ public class SpaceInformationController {
         service.createSpaceInformation(entity);
     }
 
-    @GetMapping(value = "/SpaceInformation/ALl")
-    public ResponseEntity<List<SpaceInfromationEntity>> getAllSpaceInformation(){
-        return service.getAllSpaceInformation();
+    @GetMapping(value = "/SpaceInformation/All")
+    public ResponseEntity getAllSpaceInformation(){
+        return new ResponseEntity(service.getAllSpaceInformation(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/SpaceInformation{title}")
