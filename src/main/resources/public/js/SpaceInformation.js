@@ -20,5 +20,9 @@ function getAllSapceInformation(){
 }
 
 function openSpaceInformation(object){
+    $('#SISDetials').modal('show');
+    document.getElementById("spaceInformationID").setAttribute('value',object.uuid);
+    document.getElementById("spaceInformationTitle").setAttribute('value', object.title);
+    document.getElementById("spaceInformationText").setAttribute('value', object.info);
 
 }

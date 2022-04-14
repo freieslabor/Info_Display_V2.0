@@ -70,7 +70,6 @@ function searchingItemFromModal(){
 }
 
 function openDetails(object){
-    console.log(object);
     $('#ItemDetials').modal('show');
     document.getElementById( "ItemEntryId").setAttribute('value', object.uuid);
     document.getElementById("ItemEntryName").setAttribute('value', object.name);
