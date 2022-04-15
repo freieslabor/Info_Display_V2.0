@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<head>
+<head xmlns="http://www.w3.org/1999/html">
     <title>Info Display</title>
     <!-- Start list of links for Bootstrap4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -16,6 +16,7 @@
     <script src="js/InfoDisplay.js"></script>
     <script src="js/CalenderFunctions.js"></script>
     <script src="js/StuffInSpaceFunctions.js"></script>
+    <script src="js/SpaceInformation.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navbar">
@@ -40,6 +41,15 @@
                     <div class="dropdown-menu">
                         <button  class="dropdown-item" data-target="#allCalenderEntries" data-toggle="modal" onclick="getAllCalenderEntries()">All Entries</button>
                         <button  class="dropdown-item" data-target="#createCalenderEntiries" data-toggle="modal">Add Calender Entry</button>
+                    </div>
+                </div>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Spe Information</button>
+                    <div class="dropdown-menu">
+                        <button type="button" class="dropdown-item" data-target="#createSpaceInformation" data-toggle="modal">Add Space Information</button>
+                        <button type="button" class="dropdown-item" data-target="#showAllSpaceInformation" data-toggle="modal" onclick="getAllSpaceInformation();">All Entries</button>
                     </div>
                 </div>
             </li>&nbsp;&nbsp;
@@ -72,6 +82,13 @@
             <div class="card-body">
                 <h5 class="card-title">Todays Calander Information:</h5>
                 <p class="card-text" id="calanderInformation"><span id="responseCalanderInfo"></span> </p>
+            </div>
+        </div>
+        <br />
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">Current Space Infomation:</h5>
+                <p class="card-text"><span id="allSpaceInformations"></span></p>
             </div>
         </div>
     </div>
@@ -258,7 +275,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="SISDetails">
+<div class="modal fade" id="SIDetails">
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Space Information</h4>
@@ -280,5 +297,6 @@
     //Load all get Functions
     getCurrentRoomStatus();
     getCalanderEntryForCurrentDay();
+    getAllSpaceInformation();
 </script>
 </html>

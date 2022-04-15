@@ -1,10 +1,13 @@
 var spaceInfomationRequest = new XMLHttpRequest();
 
-function getAllSapceInformation(){
+function getAllSpaceInformation(){
     var spaceInfos = "";
-    content.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
+    spaceInfomationRequest.open("GET", "/SpaceInformation/All", false);
+    spaceInfomationRequest.send();
+    spaceInfomationRequest.onreadystatechange = function(){
+        if(this.readyState === 4 && this.status === 200){
            var spaceInfoJSON = JSON.parse(this.responseText);
+           console.log(spaceInfoJSON);
            if(spaceInfoJSON === ""){
                spaceInfos = "No Entries in database!";
            }
@@ -13,16 +16,16 @@ function getAllSapceInformation(){
                spaceInfos += "Title: " + spaceInfoJSON[i].title + " <button type='button' class='btn btn-success' " +
                    "onclick='openSpaceInformation(" + spaceInfoObject + ")'>Open</button>"
            }
+           document.getElementById("allSpaceInformations").innerHTML = spaceInfoObject;
         }
     }
-    content.open("GET", "/SpaceInfomation/All", true);
-    content.send();
 }
 
-function openSpaceInformation(object){
-    $('#SISDetials').modal('show');
-    document.getElementById("spaceInformationID").setAttribute('value',object.uuid);
-    document.getElementById("spaceInformationTitle").setAttribute('value', object.title);
-    document.getElementById("spaceInformationText").setAttribute('value', object.info);
-
+function openSpaceInformation(siInfo){
+    $('#SIDetials').modal('show');
+    document.getElementById("spaceInformationID").setAttribute('value',siInfo.uuid);
+    document.getElementById("spaceInformationTitle").setAttribute('value', siInfo.title);
+    document.getElementById("spaceInformationText").setAttribute('value', siInfo.info);
+    document.getElementById("spaceInformationCreationDate").setAttribute('value', siInfo.creationDate);
+    document.getElementById("spaceInformationModificationDate").setAttribute('value', siInfo.modificationDate);
 }

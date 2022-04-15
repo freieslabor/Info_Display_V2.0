@@ -23,8 +23,8 @@ public class SpaceInformationController {
     }
 
     @GetMapping(value = "/SpaceInformation/All")
-    public ResponseEntity getAllSpaceInformation(){
-        return new ResponseEntity(service.getAllSpaceInformation(), HttpStatus.OK);
+    public ResponseEntity<List<SpaceInfromationEntity>> getAllSpaceInformation(){
+        return new ResponseEntity<>(service.getAllSpaceInformation(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/SpaceInformation{title}")
