@@ -29,3 +29,24 @@ function openSpaceInformation(siInfo){
     document.getElementById("spaceInformationCreationDate").setAttribute('value', siInfo.creationDate);
     document.getElementById("spaceInformationModificationDate").setAttribute('value', siInfo.modificationDate);
 }
+
+function createSpaceInformation(){
+    var title = document.getElementById("spaceInfoTitle").value;
+    var info = document.getElementById("spaceInfoInformation").value;
+
+    var siData = JSON.stringify({"title": title, "info": info});
+
+    spaceInfomationRequest.open("POST", "/SpaceInformation", true);
+    spaceInfomationRequest.setRequestHeader("Content-Type", "application/json");
+    spaceInfomationRequest.send(siData);
+
+    spaceInfomationRequest.onreadystatechange = function(){
+        if(this.status === 409){
+            alert(this.responseText);
+        }
+        if(this.status === 201){
+            alert("Space Information are created!");
+            $('CreateSpaceInforamtion').modal('hide');
+        }
+    }
+}
