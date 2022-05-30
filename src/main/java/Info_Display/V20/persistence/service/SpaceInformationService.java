@@ -1,6 +1,6 @@
 package Info_Display.V20.persistence.service;
 
-import Info_Display.V20.persistence.entity.SpaceInfromationEntity;
+import Info_Display.V20.persistence.entity.SpaceInformationEntity;
 import Info_Display.V20.persistence.repositroy.SpaceInformationRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,7 +23,7 @@ public class SpaceInformationService {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    public void createSpaceInformation(SpaceInfromationEntity entity) {
+    public void createSpaceInformation(SpaceInformationEntity entity) {
         if (!repo.existsByTitle(entity.getTitle())) {
             entity.setCreationDate(LocalDateTime.now());
             entity.setModificationDate(entity.getCreationDate());
@@ -34,9 +34,9 @@ public class SpaceInformationService {
         }
     }
 
-    public void updateInformation(SpaceInfromationEntity entity) throws JsonProcessingException {
+    public void updateInformation(SpaceInformationEntity entity) throws JsonProcessingException {
         if (repo.existsById(entity.getId())) {
-            SpaceInfromationEntity entityToUpdated = repo.getOne(entity.getId());
+            SpaceInformationEntity entityToUpdated = repo.getOne(entity.getId());
             entityToUpdated.setInfo(entity.getInfo());
             entityToUpdated.setTitle(entity.getTitle());
             entityToUpdated.setModificationDate(LocalDateTime.now());
@@ -47,7 +47,7 @@ public class SpaceInformationService {
         }
     }
 
-    public List<SpaceInfromationEntity> getAllSpaceInformation() {
+    public List<SpaceInformationEntity> getAllSpaceInformation() {
         if(repo.findAll().isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "List is empty");
         }
@@ -60,7 +60,7 @@ public class SpaceInformationService {
         }
     }
 
-    private void controlUpdate(SpaceInfromationEntity entity) throws JsonProcessingException {
+    private void controlUpdate(SpaceInformationEntity entity) throws JsonProcessingException {
         JsonNode entityDB = mapper.readTree(String.valueOf(repo.getOne(entity.getId())));
         JsonNode entityToUpdate = mapper.readTree(String.valueOf(entity));
         if (!entityDB.equals(entityToUpdate)) {
@@ -68,7 +68,7 @@ public class SpaceInformationService {
         }
     }
 
-    public ResponseEntity<SpaceInfromationEntity> getInformationByTitle(String title) {
+    public ResponseEntity<SpaceInformationEntity> getInformationByTitle(String title) {
         if (repo.existsByTitle(title)) {
             return new ResponseEntity<>(repo.findByTitle(title), HttpStatus.OK);
         } else {

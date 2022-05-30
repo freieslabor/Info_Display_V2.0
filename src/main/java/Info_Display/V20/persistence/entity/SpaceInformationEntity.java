@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name="SpaceInformation")
-public class SpaceInfromationEntity {
+public class SpaceInformationEntity {
 
     @Id
     private UUID id = UUID.randomUUID();

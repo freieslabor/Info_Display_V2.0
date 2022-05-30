@@ -46,9 +46,9 @@
             </li>&nbsp;&nbsp;
             <li class="nav-item">
                 <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Spe Information</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Space Information</button>
                     <div class="dropdown-menu">
-                        <button type="button" class="dropdown-item" data-target="#createSpaceInformation" data-toggle="modal">Add Space Information</button>
+                        <button type="button" class="dropdown-item" data-target="#CreateSI" data-toggle="modal">Add Space Information</button>
                         <button type="button" class="dropdown-item" data-target="#showAllSpaceInformation" data-toggle="modal" onclick="getAllSpaceInformation();">All Entries</button>
                     </div>
                 </div>
@@ -271,6 +271,20 @@
                     <button type="button" class="btn btn-danger" onclick="deleteEntry();">Delete</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="CreateSI">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Create Space Information</h4>
+            <button class="close" type="button" data-dismiss="modal">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <label class="form-label">Title:</label>&nbsp;&nbsp;<input class="form-control" type="text" id="createSpaceInformationTitle" /><br />
+                <label class="form-label">Information:</label>&nbsp;&nbsp;<textarea id="createSpacceInformationText" rows="10" cols="50"></textarea>
             </div>
         </div>
     </div>
