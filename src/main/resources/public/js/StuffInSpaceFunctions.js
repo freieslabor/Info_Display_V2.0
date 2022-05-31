@@ -8,7 +8,7 @@ function createStuffInSpaceItem(){
 
     var data = JSON.stringify({"name": name, "position": position, "info": info});
 
-    sisRequest.open("POST", "/StuffInSpace", false);
+    sisRequest.open("POST", "/InfoDisplay/StuffInSpace", false);
     sisRequest.setRequestHeader("Content-Type", "application/json");
     sisRequest.send(data);
 
@@ -26,7 +26,7 @@ function seachingItems(){
     searchedItem = "";
     var item = document.getElementById("itemForSearch").value;
 
-    sisRequest.open("GET", "/StuffInSpace/Find?name=" + item, false);
+    sisRequest.open("GET", "/InfoDisplay/StuffInSpace/Find?name=" + item, false);
     sisRequest.send();
 
     sisRequest.onreadystatechange = function () {
@@ -50,7 +50,7 @@ function searchingItemFromModal(){
     searchedItem = "";
     var item = document.getElementById("itemForSearching").value;
 
-    sisRequest.open("GET", "/StuffInSpace/Find?name=" + item, false);
+    sisRequest.open("GET", "/InfoDisplay/StuffInSpace/Find?name=" + item, false);
     sisRequest.send();
 
     sisRequest.onreadystatechange = function () {
@@ -79,7 +79,7 @@ function openDetails(object){
 
 function deleteEntry(){
     var id = document.getElementById("ItemEntryId").value;
-    sisRequest.open("DELETE", "/StuffInSpace?id=" + id, false);
+    sisRequest.open("DELETE", "/InfoDisplay/StuffInSpace?id=" + id, false);
     sisRequest.send();
 
     sisRequest.onreadystatechange = function () {

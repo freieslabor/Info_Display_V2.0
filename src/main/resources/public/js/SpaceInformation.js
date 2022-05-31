@@ -2,7 +2,7 @@ var spaceInfomationRequest = new XMLHttpRequest();
 
 function getAllSpaceInformation(){
     var spaceInfos = "";
-    spaceInfomationRequest.open("GET", "/SpaceInformation/All", false);
+    spaceInfomationRequest.open("GET", "/InfoDisplay/SpaceInformation/All", false);
     spaceInfomationRequest.send();
     spaceInfomationRequest.onreadystatechange = function(){
         if(this.readyState === 4 && this.status === 200){
@@ -36,7 +36,7 @@ function createSpaceInformation(){
 
     var siData = JSON.stringify({"title": title, "info": info});
 
-    spaceInfomationRequest.open("POST", "/SpaceInformation", true);
+    spaceInfomationRequest.open("POST", "/InfoDisplay/SpaceInformation", true);
     spaceInfomationRequest.setRequestHeader("Content-Type", "application/json");
     spaceInfomationRequest.send(siData);
 
