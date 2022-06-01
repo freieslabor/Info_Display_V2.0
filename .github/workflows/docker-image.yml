@@ -13,6 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 16
+      uses: actions/setup-java@v2
+      with:
+        java-version: '16'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build a package
+      run: mvn -B package --file my-app/pom.xml
+
+    - name: Temporarily save jar artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: jar-artifact
+        path: ${{ github.workspace }}/docker/target/*.jar
+        retention-days: 1
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build docker/. --tag infodisplay:$(date +%s)
