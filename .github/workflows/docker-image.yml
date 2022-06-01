@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jar-artifact
-        path: ${{ github.workspace }}/docker/target/*.jar
+        path: ${{ github.workspace }}/target/*.jar
         retention-days: 1
     - uses: actions/checkout@v3
     - name: Build the Docker image
