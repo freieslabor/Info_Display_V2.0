@@ -31,6 +31,6 @@ jobs:
         retention-days: 1
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --tag infodisplay:$(date +%s) --build-arg WORKSPACE=${{ github.workspace }}
+      run: docker build . -t shayki/shayki-maven:${{needs.build.outputs.jar_version}} --tag infodisplay:$(date +%s) --build-arg WORKSPACE=${{ github.workspace }}
     - name: Push Docker Image to Nexus
       run: docker push joschi87.net:9000/infodisplay:$(date +%s)
