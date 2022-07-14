@@ -27,10 +27,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jar-artifact
-        path: ${{ github.workspace }}/target/*.jar
+        path: ${{ github.workspace }}/target/InfoDisplay.jar
         retention-days: 1
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --tag infodisplay:$(date +%s) --build-arg WORKSPACE=${{ github.workspace }}/target/*.jar
+      run: docker build . --tag infodisplay:$(date +%s) --build-arg WORKSPACE=${{ github.workspace }}/target/InfoDisplay.jar
     - name: Push Docker Image to Nexus
       run: docker push joschi87.net:9000/infodisplay:$(date +%s)
