@@ -21,16 +21,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build a package
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml; docker build . --tag infodisplay:$(date +%s) --build-arg WORKSPACE=${{ github.workspace }}/target/InfoDisplay.jar; docker push joschi87.net:9000/infodisplay:$(date +%s)
 
-    - name: Temporarily save jar artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: jar-artifact
-        path: ${{ github.workspace }}/target/InfoDisplay.jar
-        retention-days: 1
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --tag infodisplay:$(date +%s) --build-arg WORKSPACE=${{ github.workspace }}/target/InfoDisplay.jar
-    - name: Push Docker Image to Nexus
-      run: docker push joschi87.net:9000/infodisplay:$(date +%s)
