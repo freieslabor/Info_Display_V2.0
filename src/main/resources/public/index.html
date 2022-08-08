@@ -12,11 +12,11 @@
     <!--Settings for Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Load optional function-->
-    <link href="css/style.css" rel="stylesheet">
-    <script src="js/InfoDisplay.js"></script>
-    <script src="js/CalenderFunctions.js"></script>
-    <script src="js/StuffInSpaceFunctions.js"></script>
-    <script src="js/SpaceInformation.js"></script>
+    <link href="./css/style.css" rel="stylesheet">
+    <script src="./js/InfoDisplay.js"></script>
+    <script src="./js/CalenderFunctions.js"></script>
+    <script src="./js/StuffInSpaceFunctions.js"></script>
+    <script src="./js/SpaceInformation.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navbar">
@@ -93,6 +93,9 @@
         </div>
     </div>
 </div>
+
+<!-- Modals -->
+
 <div class="modal fade" id="Room">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -283,9 +286,14 @@
         </div>
         <div class="modal-body">
             <div class="input-group mb-3">
-                <label class="form-label">Title:</label>&nbsp;&nbsp;<input class="form-control" type="text" id="createSpaceInformationTitle" /><br />
-                <label class="form-label">Information:</label>&nbsp;&nbsp;<textarea id="createSpacceInformationText" rows="10" cols="50"></textarea>
+                <label class="form-label">Title:</label>&nbsp;&nbsp;<input class="form-control" type="text" id="createSpaceInformationTitle" />
             </div>
+            <div class="input-group mb-3">
+                <label class="form-label">Information:</label>&nbsp;&nbsp;<textarea id="createSpaceInformationText" rows="10" cols="50"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" onclick="createSpaceInformation();">Save</button>
         </div>
     </div>
 </div>
@@ -299,10 +307,15 @@
             <div class="input-group mb-3">
                 <label class="form-label">ID:</label>&nbsp;&nbsp;<input class="form-control" type="text" id="spaceInformationID" readonly>
                 <label class="form-label">Title:</label>&nbsp;&nbsp;<input class="form-control" type="text" id="spaceInformationTitle">
+            </div>
+            <div class="input-group mb-3">
                 <label class="form-label">Text:</label>&nbsp;&nbsp;<textarea id="spaceInformationText" rows="10" cols="50"></textarea>
                 <label class="form-label">CreationDate:</label><input class="form-control" type="date" id="spaceInformationCreationDate">
                 <label class="form-label">ModificationDate:</label><input class="form-control" type="date" id="spaceInformationModificationDate">
             </div>
+        </div>
+        <div class="modal-footer">
+
         </div>
     </div>
 </div>

@@ -1,13 +1,13 @@
 var spaceInfomationRequest = new XMLHttpRequest();
+var domain = "/" + window.location.pathname;
 
 function getAllSpaceInformation(){
     var spaceInfos = "";
-    spaceInfomationRequest.open("GET", "/InfoDisplay/SpaceInformation/All", false);
-    spaceInfomationRequest.send();
+    spaceInfomationRequest.open("GET", "/SpaceInformation/All", false);
+    spaceInfomationRequest.setRequestHeader("Accept", "application/json");
     spaceInfomationRequest.onreadystatechange = function(){
         if(this.readyState === 4 && this.status === 200){
            var spaceInfoJSON = JSON.parse(this.responseText);
-           console.log(spaceInfoJSON);
            if(spaceInfoJSON === ""){
                spaceInfos = "No Entries in database!";
            }
@@ -19,6 +19,7 @@ function getAllSpaceInformation(){
            document.getElementById("allSpaceInformations").innerHTML = spaceInfoObject;
         }
     }
+    spaceInfomationRequest.send();
 }
 
 function openSpaceInformation(siInfo){
@@ -31,12 +32,12 @@ function openSpaceInformation(siInfo){
 }
 
 function createSpaceInformation(){
-    var title = document.getElementById("spaceInfoTitle").value;
-    var info = document.getElementById("spaceInfoInformation").value;
+    var title = document.getElementById("createSpaceInformationTitle").value;
+    var info = document.getElementById("createSpaceInformationText").value;
 
     var siData = JSON.stringify({"title": title, "info": info});
 
-    spaceInfomationRequest.open("POST", "/InfoDisplay/SpaceInformation", true);
+    spaceInfomationRequest.open("POST", "/SpaceInformation", false);
     spaceInfomationRequest.setRequestHeader("Content-Type", "application/json");
     spaceInfomationRequest.send(siData);
 
@@ -47,6 +48,8 @@ function createSpaceInformation(){
         if(this.status === 201){
             alert("Space Information are created!");
             $('CreateSpaceInforamtion').modal('hide');
+        }else{
+            alert(this.responseText);
         }
     }
 }

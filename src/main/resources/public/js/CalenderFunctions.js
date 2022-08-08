@@ -17,7 +17,7 @@ function getCalanderEntryForCurrentDay(){
             document.getElementById("responseCalanderInfo").innerHTML = calender;
         }
     }
-    content.open("GET", "/InfoDisplay/calender", true);
+    content.open("GET", "/calender", true);
     content.send();
 }
 
@@ -38,7 +38,7 @@ function getAllCalenderEntries(){
             document.getElementById("calenderEntries").innerHTML = output;
         }
     }
-    content.open("GET", "/InfoDisplay/calender/All", true);
+    content.open("GET", "/calender/All", true);
     content.send();
 }
 
@@ -58,7 +58,7 @@ function saveChange(){
 
     var data = JSON.stringify({"id": id, "date": date, "name": name, "comment": comment});
 
-    content.open("PUT", "/InfoDisplay/calender", true);
+    content.open("PUT", domain + "calender", true);
     content.setRequestHeader("Content-Type", "application/json");
 
     content.onreadystatechange = function () {
@@ -76,7 +76,7 @@ function saveChange(){
 function createCalenderEntry(){
     var data = JSON.stringify({"date": document.getElementById("newEntryDate").value, "name": document.getElementById("newEntryName").value, "comment": document.getElementById("newEntryComment").value});
 
-    content.open("POST", "/InfoDisplay/calender", false);
+    content.open("POST", domain + "calender", false);
     content.setRequestHeader("Content-Type", "application/json");
 
     content.onreadystatechange = function () {
@@ -93,7 +93,7 @@ function createCalenderEntry(){
 }
 
 function deleteCalenderEntry(json){
-    content.open("DELETE", "/InfoDisplay/calender/" + json.id, false);
+    content.open("DELETE", domain + "calender" + json.id, false);
     content.onreadystatechange = function (){
         if(this.status == 200){
             alert(this.responseText);

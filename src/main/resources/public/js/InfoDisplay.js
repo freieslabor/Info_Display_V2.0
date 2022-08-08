@@ -9,7 +9,7 @@ function getCurrentRoomStatus(){
             document.getElementById("roomStatus").innerHTML = roomStatus;
         }
     }
-    content.open("GET", "/InfoDisplay/RoomStatus", true);
+    content.open("GET", "/RoomStatus", true);
     content.send();
 }
 
@@ -23,7 +23,7 @@ function openRoom(){
                 getCurrentRoomStatus();
             }
         }
-        content.open("POST", "/InfoDisplay/RoomStatus", true);
+        content.open("POST", "/RoomStatus", true);
         content.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         content.send('status=OPEN');
     }
@@ -39,7 +39,7 @@ function closeRoom(){
                 getCurrentRoomStatus();
             }
         }
-        content.open("POST", "/InfoDisplay/RoomStatus", true);
+        content.open("POST", "/RoomStatus", true);
         content.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         content.send('status=CLOSE');
     }
