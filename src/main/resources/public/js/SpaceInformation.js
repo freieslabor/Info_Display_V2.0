@@ -3,7 +3,7 @@ var domain = "/" + window.location.pathname;
 
 function getAllSpaceInformation(){
     var spaceInfos = "";
-    spaceInfomationRequest.open("GET", "/SpaceInformation/All", false);
+    spaceInfomationRequest.open("GET", "/InfoDisplay/SpaceInformation/All", false);
     spaceInfomationRequest.setRequestHeader("Accept", "application/json");
     spaceInfomationRequest.onreadystatechange = function(){
         if(this.readyState === 4 && this.status === 200){
@@ -37,7 +37,7 @@ function createSpaceInformation(){
 
     var siData = JSON.stringify({"title": title, "info": info});
 
-    spaceInfomationRequest.open("POST", "/SpaceInformation", false);
+    spaceInfomationRequest.open("POST", "/InfoDisplay/SpaceInformation", false);
     spaceInfomationRequest.setRequestHeader("Content-Type", "application/json");
     spaceInfomationRequest.send(siData);
 
