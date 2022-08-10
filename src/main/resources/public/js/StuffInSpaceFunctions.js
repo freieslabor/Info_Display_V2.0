@@ -30,7 +30,7 @@ function seachingItems(){
     sisRequest.send();
 
     sisRequest.onreadystatechange = function () {
-        if(this.readyState == 4) {
+        if(this.status == 200) {
             var obj = JSON.parse(this.responseText);
             if (obj == "") {
                 searchedItem = "No Entires in database";
@@ -40,9 +40,11 @@ function seachingItems(){
                     searchedItem += "<li class='list-group-item'><div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%; margin-top: -30px'><button class='btn btn-primary' onclick='openDetails(" + detailJSON + ")'>Open</button></div></li>"
                 }
             }
+            $('#searchItems').modal('show');
+            $("#searchItemsBody").html(searchedItem);
+        }else{
+            alert(this.status + '<br />' + this.responseText);
         }
-        $('#searchItems').modal('show');
-        $("#searchItemsBody").html(searchedItem);
     }
 }
 
@@ -54,7 +56,7 @@ function searchingItemFromModal(){
     sisRequest.send();
 
     sisRequest.onreadystatechange = function () {
-        if(this.readyState == 4) {
+        if(this.status === 200) {
             var obj = JSON.parse(this.responseText);
             if (obj == "") {
                 searchedItem = "No Entires in database";
@@ -64,8 +66,10 @@ function searchingItemFromModal(){
                     searchedItem += "<li class='list-group-item'><div style='margin-left: 2%;'>" + obj[i].name + "</div><div style='float: right; margin-right: 2%; margin-top: -30px'><button class='btn btn-primary' onclick='openDetails(" + detailJSON + ")'>Open</button></div></li>"
                 }
             }
+            $("#returnSearchedItems").html(searchedItem);
+        }else{
+            alert(this.status + '<br />'+ this.responseText);
         }
-        $("#returnSearchedItems").html(searchedItem);
     }
 }
 
