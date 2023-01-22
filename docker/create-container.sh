@@ -13,7 +13,7 @@ RESULT_CONATINER=""
 
 sudo rm -rf ${DIR_TARGET}
 
-if [ ! -d ${DIR_TARGET}]; then
+if [ ! -d "${DIR_TARGET}" ]; then
     cd ../
     mvn clean install
     sudo docker build ./docker/ -t infodisplay 
