@@ -25,7 +25,10 @@ if [ ! -d ${DIR_TARGET}]; then
             sudo docker run -d --name InfoDisplay -p 8400:8400 infodisplay
         else
             echo 'Docker ready for run!'
+        fi
     else
         echo 'Docker Image did not create'
+    fi
 else
     echo 'Target directory can not remove'
+fi
