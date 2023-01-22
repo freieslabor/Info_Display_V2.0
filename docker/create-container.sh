@@ -28,3 +28,4 @@ if [ ! -d ${DIR_TARGET}]; then
     else
         echo 'Docker Image did not create'
 else
+    echo 'Target directory can not remove'
