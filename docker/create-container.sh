@@ -11,13 +11,13 @@ DIR_TARGET="../target/"
 RESULT_IMAGE=""
 RESULT_CONATINER=""
 
-sudo rm -rf ${DIR_TARGET}
+sudo rm -rf "${DIR_TARGET}"
 
 if [ ! -d "${DIR_TARGET}" ]; then
     cd ../
     mvn clean install
     sudo docker build ./docker/ -t infodisplay 
-    $RESULT_IMAGE = $(sudo docker images -q infodisplay)
+    $RESULT_IMAGE=$(sudo docker images -q infodisplay)
 
     if [[ -n "$RESULT" ]]; then
         echo 'Docker Image created'
