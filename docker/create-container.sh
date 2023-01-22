@@ -9,8 +9,7 @@ done
 
 DIR_TARGET="../target/" 
 RESULT_IMAGE=""
-RESULT_CONATINER= ""
-
+RESULT_CONATINER=""
 
 sudo rm -rf ${DIR_TARGET}
 
@@ -20,7 +19,7 @@ if [ ! -d ${DIR_TARGET}]; then
     sudo docker build ./docker/ -t infodisplay 
     $RESULT_IMAGE = $(sudo docker images -q infodisplay)
 
-    if[[ -n "$RESULT" ]]; then
+    if [[ -n "$RESULT" ]]; then
         echo 'Docker Image created'
         if [[$DOCKER_CONATINER_AUTOSTART]]; then
             sudo docker run -d --name InfoDisplay -p 8400:8400 infodisplay
