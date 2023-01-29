@@ -20,16 +20,10 @@ if [ ! -d "${DIR_TARGET}" ]; then
     mvn clean install
     sudo docker build ./docker/ -t infodisplay 
     RESULT_IMAGE=$(sudo docker images -q infodisplay)
-
-    if [[ $RESULT != "" ]]; then
-        echo 'Docker Image created'
-        if [[$DOCKER_CONATINER_AUTOSTART]]; then
+    if [[$DOCKER_CONATINER_AUTOSTART]]; then
             sudo docker run -d --name InfoDisplay -p 8400:8400 infodisplay
-        else
-            echo 'Docker ready for run!'
-        fi
     else
-        echo 'Docker Image did not create'
+            echo 'Docker ready for run!'
     fi
 else
     echo 'Target directory can not remove'
