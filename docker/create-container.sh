@@ -20,7 +20,7 @@ if [ ! -d "${DIR_TARGET}" ]; then
     mvn clean install
     sudo docker build ./docker/ -t infodisplay 
     RESULT_IMAGE=$(sudo docker images -q infodisplay)
-    if [$DOCKER_CONATINER_AUTOSTART]; then
+    if $DOCKER_CONATINER_AUTOSTART; then
             sudo docker run -d --name InfoDisplay -p 8400:8400 infodisplay
     else
             echo 'Docker ready for run!'
