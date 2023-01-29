@@ -11,6 +11,9 @@ DIR_TARGET="../target/"
 RESULT_CONATINER=""
 
 sudo rm -rf "${DIR_TARGET}"
+sudo docker stop infodisplay
+sudo docker rm infodisplay
+sudo docker image rm infodisplay
 
 if [ ! -d "${DIR_TARGET}" ]; then
     cd ../
@@ -18,7 +21,7 @@ if [ ! -d "${DIR_TARGET}" ]; then
     sudo docker build ./docker/ -t infodisplay 
     RESULT_IMAGE=$(sudo docker images -q infodisplay)
 
-    if [[ -n "$RESULT" ]]; then
+    if [[ $RESULT != "" ]]; then
         echo 'Docker Image created'
         if [[$DOCKER_CONATINER_AUTOSTART]]; then
             sudo docker run -d --name InfoDisplay -p 8400:8400 infodisplay
